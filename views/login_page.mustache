@@ -1,0 +1,306 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Login</title>
+    <style>
+* {
+    margin: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.LoginPageContainer {
+    height: 100vh;
+    overflow: auto;
+}
+
+.LoginPageInnerContainer {
+    display: flex;
+    min-height: 100%;
+}
+
+.LoginPageInnerContainer .ImageContianer {
+    width: 40%;
+    background-image: url('./assets/images/bg-login.jpg');
+    background-size: cover;
+    background-position: left;
+    min-height: 100%;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.LoginPageInnerContainer .ImageContianer .GroupImage {
+    width: 100%;
+    display: block;
+}
+
+.LoginPageInnerContainer .LoginFormContainer {
+    flex-grow: 2;
+    background-color: white;
+    min-height: 100%;
+    padding: 5%;
+    background: url(https://i.imgur.com/BKyjjFa.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .LogoContainer .logo {
+    height: 60px;
+    margin-bottom: 30px;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .header {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .subHeader {
+    color: #9aa4ad;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .inputContainer {
+    color: #3f3f45;
+    margin: 20px 0px;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .inputContainer .label {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 7px;
+    margin-bottom: 10px;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .inputContainer .label .labelIcon {
+    width: 20px;
+    margin-right: 10px;
+    display: block;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .inputContainer .input {
+    display: block;
+    width: calc(100% - 20px);
+    font-size: 15px;
+    padding: 10px;
+    border: 1px solid #d6d7db;
+    border-radius: 5px;
+    margin-top: 5px;
+    outline: 0px !important;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .OptionsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.LoginFormContainer {
+    display: flex;
+    align-items: center;
+}
+
+.LoginFormInnerContainer {
+    max-width: 500px;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .checkbox {
+    width: 15px;
+    height: 15px;
+    margin: 0px;
+    display: block;
+    border: 1px solid #d6d7db;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .checkboxContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .checkboxContainer label {
+    display: block;
+    padding: 0px 5px;
+    color: #9aa4ad;
+}
+
+.LoginPageInnerContainer .LoginFormContainer .ForgotPasswordLink {
+    color: #e7483b;
+    text-decoration: none;
+}
+
+.LoginFormContainer .LoginFormInnerContainer .LoginButton {
+    margin-top: 30px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    background-color: #000000;
+    border: 0px;
+    outline: 0px;
+    cursor: pointer;
+}
+
+.LoginFormContainer .LoginFormInnerContainer .LoginButton:active {
+    background-color: #4520ff;
+}
+.LoginFormContainer .LoginFormInnerContainer .GuestButton {
+    text-align: center;
+    margin-top: 30px;
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    color: black;
+    opacity: 0.9;
+    border: 0px;
+    outline: 0px;
+    cursor: pointer;
+}
+
+.LoginFormContainer .LoginFormInnerContainer .GuestButton:hover {
+    
+    color: #3f3f45;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .LoginPageInnerContainer .ImageContianer {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .LoginPageInnerContainer .ImageContianer {
+        display: none;
+    }
+
+    .LoginFormContainer {
+        justify-content: center;
+    }
+}
+.LoginPageContainer::-webkit-scrollbar {
+    width: 5px;
+}
+
+.LoginPageContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.LoginPageContainer::-webkit-scrollbar-thumb {
+    background: #2e1f7a;
+}
+
+.LoginPageContainer::-webkit-scrollbar-thumb:hover {
+    background: #4520ff;
+}
+#guest-button{
+            margin: 40px;
+            /* text-decoration: none; */
+            color: white;
+}
+#guest-button:hover{
+    background-color: black;
+}
+    </style>
+</head>
+<body>
+    <div class="LoginPageContainer">
+        <div class="LoginPageInnerContainer">
+            <div class="ImageContianer">
+                <!-- <img src="https://images.unsplash.com/photo-1611117775350-ac3950990985?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80" class="GroupImage"> -->
+            </div>
+            <div class="LoginFormContainer">
+                <div class="LoginFormInnerContainer">
+                    <div class="LogoContainer">
+                        <!-- <img src="https://www.pngkey.com/png/full/529-5291672_sample-logo-png-transparent-background.png" class="logo"> -->
+                        <h1><i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><path fill="currentColor" d="M494 21.621c-14.947 8.43-29.566 17.581-43.67 29.227l7.318 38.547C471.923 93.66 483.583 95.26 494 95.36zm-98.982 24.512c-15.283-.085-32.48 2.596-53.832 6.834l-.22.043l-.22.033c-14.77 2.177-40.794 12.065-66.465 38.867l44.27 11.766c.972-1.493 5.936-9.004 6.88-10.555c5.124 3.123 10.248 6.244 15.372 9.365c-12.475 20.475-26.742 35.556-43.934 54.522c-2.123 4.718.977 8.199 4.36 10.14c5.22 2.931 14.1 3.09 16.437 2.102c23.932-15.768 40.819-35.928 55.963-56.271l5.469.964c11.501 2.031 26.47 1.058 38.707-2.853c11.098-3.548 19.272-9.357 22.662-15.688L432.54 53.65c-12.044-5.214-24.039-7.442-37.523-7.517zM227.932 98.717l-29.436 115.986l9.643.297H311.27l.9-.209l6.804-27.092c-8.86 1.9-18.296-.217-26.557-4.855c-5.188-2.913-10.024-7.24-12.621-13.434c-7.797-19.938 15.857-37.297 28.724-52.75l-80.59-17.943zM69.562 201l-23 46h418.875l-23-46H334.195l-3.517 14H352v18H160v-18h19.852l3.552-14H69.563zM41 265v222h430V265zm14 14h402v194H55zm18 18v118.238l34.502-74.994l73.36 31.762l66.652-45.84l37.513 57.273l50.11-4.595l31.3-39.332L439 394.627V297zm169.543 54.43l-90.63 62.33l27.01 41.24h95.606l19.666-24.71zm-126.045 12.326L74.521 455h82.885l-30.193-46.098l36.144-24.857l-46.859-20.29zm253.065.732L297.533 455h140.54l.927-1.166v-36.602zm-49.944 33.854l-23.426 2.148l9.805 14.969z"/></svg>
+                        </i>LINK-SUARA</h1>
+                        <br>
+                    </div>
+                    <header class="header">Log in</header>
+                    <header class="subHeader">Welcome to <b>Link-Suara</b>. Please Enter your Details</header>
+    
+                    <form method="post" action="/login">
+                        <div class="inputContainer">
+                            <label class="label" for="username">
+                                <i class="labelIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="currentColor" d="M229.19 213c-15.81-27.32-40.63-46.49-69.47-54.62a70 70 0 1 0-63.44 0C67.44 166.5 42.62 185.67 26.81 213a6 6 0 1 0 10.38 6c19.21-33.19 53.15-53 90.81-53s71.6 19.81 90.81 53a6 6 0 1 0 10.38-6ZM70 96a58 58 0 1 1 58 58a58.07 58.07 0 0 1-58-58Z"/></svg>
+                                </i>
+                                <span>Username / ID Employee</span></label>
+                            <input class="input" type="text" name="username"  placeholder="Enter your Username" required>
+                        </div>
+                        <div class="inputContainer">
+                            <label class="label" for="password">
+                                <i class="labelIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48"><circle cx="33.4" cy="14.8" r="3.9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M20.4 20.4a11.47 11.47 0 0 1 5.2-13.3a11.31 11.31 0 0 1 14.1 2.3a11.32 11.32 0 0 1-13 17.9"/><path fill="none" stroke="currentColor" d="M20.4 20.4L5.5 37v5.4h6.1l.7-4.2l6.5-.4l.5-5.5l5.5-.1l1.8-4.8"/></svg>
+                                </i>
+                                <span>Password</span></label>
+                            <input name="password" class="input" type="password" name="password"  placeholder="Enter your Password" required>
+                        </div>
+                        <div style="color: red;">
+                            <span>{{error}}</span>
+                        </div>
+                        <br>
+                        {{#error}}
+                            <div style="color: red;">
+                                <span>{{message}}</span>
+                            </div>
+                            <br>
+                        {{/error}}
+                        <div class="OptionsContainer">
+                            <div class="checkboxContainer">
+                                <input type="checkbox" id="RememberMe" class="checkbox" name="stay"> <label for="RememberMe">Remember Me</label>
+                            </div>
+                            <a href="#" class="ForgotPasswordLink">Forgot Password?</a>
+                        </div>
+                        <button class="LoginButton" type="submit">Login</button>
+                        <!-- <a href="/guest" class="GuestButton">Guest</a> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // Fungsi untuk menyimpan status Remember Me di localStorage
+    function saveRememberMeStatus() {
+        const rememberMeCheckbox = document.getElementById("RememberMe");
+        const isChecked = rememberMeCheckbox.checked;
+        
+        // Menyimpan status Remember Me di localStorage
+        localStorage.setItem("rememberMe", isChecked);
+    }
+
+    // Fungsi untuk mengambil status Remember Me dari localStorage
+    function getRememberMeStatus() {
+        const rememberMeCheckbox = document.getElementById("RememberMe");
+        const storedRememberMe = localStorage.getItem("rememberMe");
+
+        // Memeriksa dan menetapkan status Remember Me dari localStorage
+        if (storedRememberMe === "true") {
+            rememberMeCheckbox.checked = true;
+        } else {
+            rememberMeCheckbox.checked = false;
+        }
+    }
+
+    // Panggil fungsi untuk mendapatkan status Remember Me saat halaman dimuat
+    window.onload = function() {
+        getRememberMeStatus();
+    };
+
+    // Panggil fungsi untuk menyimpan status Remember Me saat ceklis berubah
+    document.getElementById("RememberMe").addEventListener("change", function() {
+        saveRememberMeStatus();
+    });
+</script>
+</html>
