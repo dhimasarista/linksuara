@@ -15,34 +15,53 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="on-going-button">
-                            <!-- On Going Content -->
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama</th>
-                                            <th>Jumlah Suara</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Foto Hasil Perhitungan</td>
-                                            <td>
-                                                <input type="file" accept="image/*" name="buktiFoto" id="bukti-foto">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Anto Selang</td>
-                                            <td>
-                                                <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
-                                            </td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                                    <button id="submit-hitungsuara" class="btn btn-primary" type="button" disabled>
-                                        <span id="loading-hitungsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
-                                    </button>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama</th>
+                                                    <th>Jumlah Suara</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Gilang Solar</td>
+                                                    <td>
+                                                        <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Anto Selang</td>
+                                                    <td>
+                                                        <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                            <button id="submit-hitungsuara" class="btn btn-primary" type="button" disabled>
+                                                <span id="loading-hitungsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
+                                            </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <table class="table table-bordered table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Foto Hasil Perhitungan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="file" accept="image/*" name="buktiFoto" id="bukti-foto">
+                                                </td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <script>
                                 // document.addEventListener('DOMContentLoaded', function() {
