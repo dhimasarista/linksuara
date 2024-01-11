@@ -9,6 +9,6 @@ func SetupRoutes(app *fiber.App, store *session.Store) {
 	AuthRoutes(app)
 	DashboardRoutes(app, store)
 	IndexRoutes(app, store)
-	InputSuaraRoutes(app)
+	InputSuaraRoutes(app, store)
 	ErrorRoutes(app, store)
 }

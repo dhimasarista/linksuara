@@ -20,7 +20,7 @@ func main() {
 	app := fiber.New(fiber.Config{
 		Views: engine,
 		ErrorHandler: func(c *fiber.Ctx, err error) error {
-			return c.Redirect("/404")
+			return c.Redirect("/404") // Menangani Path yang tidak ada
 		},
 	})
 
@@ -29,7 +29,7 @@ func main() {
 
 	// Routes
 	routes.SetupRoutes(app, &store)
-	app.Get("/metrics", monitor.New())
+	app.Get("/metrics", monitor.New()) // Menampilkan metrics
 
 	log.Fatal(app.Listen(":9999"))
 }

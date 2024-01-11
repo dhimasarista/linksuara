@@ -1,10 +1,19 @@
 package routes
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"linksuara/app/handlers"
 
-func InputSuaraRoutes(app *fiber.App) {
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/session"
+)
 
+func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 	app.Get("/input-suara", func(c *fiber.Ctx) error {
-		return c.Render("inputsuara_page", fiber.Map{})
+		var path = c.Path()
+		var username = handlers.GetSessionUsername(c, store)
+		return c.Render("inputsuara_page", fiber.Map{
+			"path":     path,
+			"username": username,
+		})
 	})
 }
