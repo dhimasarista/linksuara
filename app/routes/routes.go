@@ -7,5 +7,8 @@ import (
 
 func SetupRoutes(app *fiber.App, store *session.Store) {
 	AuthRoutes(app)
+	DashboardRoutes(app, store)
 	IndexRoutes(app, store)
+	InputSuaraRoutes(app)
+	ErrorRoutes(app, store)
 }

@@ -14,6 +14,7 @@ func IndexRoutes(app *fiber.App, store *session.Store) {
 			log.Println(err)
 			return c.Redirect("/505")
 		}
+		// Mengatur session
 		session.Set("username", "test")
 		session.Set("user_id", "test")
 		session.Set("logged_in", "loggedIn")
@@ -25,9 +26,8 @@ func IndexRoutes(app *fiber.App, store *session.Store) {
 			log.Println(err)
 			return err
 		}
-
 		log.Println("Login:", usernameSession, c.IP())
 
-		return c.JSON("Hello World!")
+		return c.Redirect("/dashboard")
 	})
 }
