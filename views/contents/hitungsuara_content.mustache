@@ -77,9 +77,9 @@
         </div>
     <div class="card shadow mb-4" id="card-pilihcaleg">
         <div class="card">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Pilih Caleg</h6>
-            </div>
+            <!-- <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"></h6>
+            </div> -->
             <div class="card-body">
                 <div class="form-wrap">	
                     <form id="survey-form">
@@ -87,10 +87,13 @@
                             <div class="col-md-12">
                             <div id="existing-product">
                                     <div class="form-group">
-                                        <label id="pilihdapil-label" for="pilih-dapil">Daerah Pemilihan</label>
+                                        <label id="pilihdapil-label" for="pilih-dapil">Pilih Jenis Hitung Suara</label>
                                         <select class="form-control scrollable-menu" id="pilih-dapil" name="pilihDapil" onchange="pilihDapilEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
-                                            <option value="" selected disabled>Pilih Dapil</option>
-                                            <option value="2" data-price="{{price}}">DAPIL 2 BATAM KOTA - LUBUK BAJA</option>
+                                            <option value="" selected disabled>Pilih Jenis Hitung Suara</option>
+                                            <option value="2" data-price="{{price}}">PER-DAPIL</option>
+                                            <option value="2" data-price="{{price}}">PER-KECAMATAN</option>
+                                            <option value="2" data-price="{{price}}">PER-KELURAHAN</option>
+                                            <option value="2" data-price="{{price}}">PER-CALEG</option>
                                         </select>
                                     </div>
                                 </div>
