@@ -15,8 +15,8 @@ func IndexRoutes(app *fiber.App, store *session.Store) {
 			return c.Redirect("/505")
 		}
 		// Mengatur session
-		session.Set("username", "test")
-		session.Set("user_id", "test")
+		session.Set("username", "kotabatam")
+		session.Set("user_id", "21710000")
 		session.Set("logged_in", "loggedIn")
 		store.CookieHTTPOnly = true
 		store.CookieSecure = true

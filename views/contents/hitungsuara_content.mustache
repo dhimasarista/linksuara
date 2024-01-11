@@ -1,0 +1,210 @@
+<div class="container-fluid" id="order-main-content">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Hitung Suara</h1>
+        <!-- <div id="add-stocks-button"><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i>New Order</i></a></div>
+        <div id="return-button" hidden><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i>Return</i></a></div> -->
+    </div>
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4" id="card-hitungsuara" hidden>
+            <div class="card">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">BATAM KOTA - BELIAN - TPS 22</h6>
+                    
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="on-going-button">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama</th>
+                                                    <th>Jumlah Suara</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Gilang Solar</td>
+                                                    <td>
+                                                        <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Anto Selang</td>
+                                                    <td>
+                                                        <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                            <button id="submit-hitungsuara" class="btn btn-primary" type="button" disabled>
+                                                <span id="loading-hitungsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
+                                            </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <table class="table table-bordered table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Foto Hasil Perhitungan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="file" accept="image/*" name="buktiFoto" id="bukti-foto">
+                                                </td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <script>
+                                // document.addEventListener('DOMContentLoaded', function() {
+                                //     const orderGoingTable = $('#tabel-caleg').DataTable({
+                                //         "order": [[0, 'desc']] // Mengurutkan berdasarkan kolom pertama secara menaik
+                                //     });
+                                // });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="card shadow mb-4" id="card-pilihcaleg">
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Pilih Caleg</h6>
+            </div>
+            <div class="card-body">
+                <div class="form-wrap">	
+                    <form id="survey-form">
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div id="existing-product">
+                                    <div class="form-group">
+                                        <label id="pilihdapil-label" for="pilih-dapil">Daerah Pemilihan</label>
+                                        <select class="form-control scrollable-menu" id="pilih-dapil" name="pilihDapil" onchange="pilihDapilEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
+                                            <option value="" selected disabled>Pilih Dapil</option>
+                                            <option value="2" data-price="{{price}}">DAPIL 2 BATAM KOTA - LUBUK BAJA</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div id="existing-product">
+                                    <div class="form-group">
+                                        <label id="kecamatan-label" for="product_name">Kecamatan</label>
+                                        <select class="form-control scrollable-menu" id="pilih-kecamatan" name="pilihKecamatan" onchange="pilihKecamatanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
+                                            <option value="" selected disabled>Pilih Kecamatan</option>
+                                                <option value="2" data-price="{{price}}">Batam Kota</option>
+                                                <option value="2" data-price="{{price}}">Bengkong</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div id="existing-product">
+                                    <div class="form-group">
+                                        <label id="kelurahan-label" for="product_name">Kelurahan</label>
+                                        <select class="form-control scrollable-menu" id="pilih-kelurahan" name="pilihKelurahan" onchange="pilihKelurahanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
+                                            <option value="" selected disabled>Pilih Kelurahan</option>
+                                                <option value="2" data-price="{{price}}">Sadai</option>
+                                                <option value="2" data-price="{{price}}">Bengkong Indah</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div id="existing-product">
+                                    <div class="form-group">
+                                        <label id="caleg-label" for="product_name">Calon Legistlatif</label>
+                                        <select class="form-control scrollable-menu" id="pilih-caleg" name="pilihCaleg" onchange="pilihCalegEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
+                                            <option value="" selected disabled>Pilih Caleg</option>
+                                                <option value="2" data-price="{{price}}">Anto Selang</option>
+                                                <option value="2" data-price="{{price}}">Ujang</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button id="submit-pilihcaleg" class="btn btn-primary" type="button" disabled>
+                                    <span id="loading-pilih" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>	
+            </div>
+        </div>
+        <script>
+            // Get Elemen Card by ID
+            const cardHitungSuara = document.getElementById("card-hitungsuara");
+            const cardPilihCaleg = document.getElementById("card-pilihcaleg");
+            // Select Form
+            const pilihDapil = document.getElementById("pilih-dapil");
+            const pilihKecamatan = document.getElementById("pilih-kecamatan");
+            const pilihKelurahan = document.getElementById("pilih-kelurahan");
+            const pilihCaleg = document.getElementById("pilih-caleg");
+            // Button Submit
+            const submitPilihCaleg = document.getElementById("submit-pilihcaleg")
+            const loadingPilih = document.getElementById("loading-pilih");
+            // Function Event Select Form
+            function pilihDapilEvent(){
+                if (pilihDapil.selectedIndex !== 0) {
+                    pilihKecamatan.removeAttribute("disabled");
+                } else {
+                    pilihKecamatan.setAttribute("disabled", true)
+                }
+            }
+            function pilihKecamatanEvent() {
+                if (pilihKecamatan.selectedIndex !== 0) {
+                    pilihKelurahan.removeAttribute("disabled");
+                }
+            }
+            function pilihKelurahanEvent() {
+                if (pilihKelurahan.selectedIndex !== 0) {
+                    pilihCaleg.removeAttribute("disabled")
+                }
+            }
+            function pilihCalegEvent() {
+                if (pilihCaleg.selectedIndex !== 0) {
+                    submitPilihCaleg.removeAttribute("disabled")
+                }
+            }
+            // Menampilkan Form Hitung Suara
+            function tampilkanHitungSuara() {
+                cardHitungSuara.removeAttribute("hidden");
+                cardPilihCaleg.setAttribute("hidden", true);
+            }
+            // Event untuk triger button submit
+            submitPilihCaleg.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                loadingPilih.innerText = "";
+                loadingPilih.classList.add("spinner-border");
+
+                setTimeout(() => {
+                    loadingPilih.classList.remove("spinner-border");
+                    loadingPilih.innerText = "Submit";
+                    tampilkanHitungSuara();
+                }, 1000);
+            })
+
+        </script>
+    </div>
+</div>
+<script>
+</script>
