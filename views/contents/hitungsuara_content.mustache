@@ -87,55 +87,55 @@
                             <div class="col-md-12">
                             <div id="existing-product">
                                     <div class="form-group">
-                                        <label id="pilihdapil-label" for="pilih-dapil">Pilih Jenis Hitung Suara</label>
-                                        <select class="form-control scrollable-menu" id="pilih-dapil" name="pilihDapil" onchange="pilihDapilEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
+                                        <label id="pilihdapil-label" for="pilih-jenis-hitung-suara">Pilih Jenis Hitung Suara</label>
+                                        <select class="form-control scrollable-menu" id="pilih-jenis-hitung-suara" name="pilihJenisHitungSuara" onchange="pilihJenisHitungSuaraEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih Jenis Hitung Suara</option>
-                                            <option value="2" data-price="{{price}}">PER-DAPIL</option>
-                                            <option value="2" data-price="{{price}}">PER-KECAMATAN</option>
-                                            <option value="2" data-price="{{price}}">PER-KELURAHAN</option>
-                                            <option value="2" data-price="{{price}}">PER-CALEG</option>
+                                            <option value="1" data-price="{{price}}">Per-Dapil</option>
+                                            <option value="2" data-price="{{price}}">Per-Kecamatan</option>
+                                            <option value="3" data-price="{{price}}">Per-Kelurahan</option>
+                                            <option value="4" data-price="{{price}}">Per-Caleg</option>
+                                        </select>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="row" id="dapil-row" hidden>
+                            <div class="col-md-12">
+                            <div id="existing-product">
+                                    <div class="form-group">
+                                        <label id="dapil-label" for="dapil-name">DAERAH PEMILIHAN</label>
+                                        <select class="form-control scrollable-menu" id="pilih-DAPIL" name="pilihDapil" onchange="pilihKecamatanEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
+                                            <option value="" selected disabled>Pilih Dapil</option>
+                                                <option value="1" data-price="{{price}}">DAPIL 1 BATAM KOTA - LUBUK BAJA</option>
+                                                <option value="2" data-price="{{price}}">DAPIL 2 BENGKONG - BATU AMPAR</option>
+                                                <option value="3" data-price="{{price}}">DAPIL 3 NONGSA - SEI BEDUK - BULANG - GALANG</option>
+                                                <option value="4" data-price="{{price}}">DAPIL 4 SAGULUNG</option>
+                                                <option value="5" data-price="{{price}}">DAPIL 5 BATU AJI</option>
+                                                <option value="6" data-price="{{price}}">DAPIL 6 SEKUPANG - BELAKANG PADANG</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" id="kecamatan-row" hidden>
                             <div class="col-md-12">
                             <div id="existing-product">
                                     <div class="form-group">
-                                        <label id="kecamatan-label" for="product_name">Kecamatan</label>
-                                        <select class="form-control scrollable-menu" id="pilih-kecamatan" name="pilihKecamatan" onchange="pilihKecamatanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
+                                        <label id="dapil-label" for="dapil-name">KECAMATAN</label>
+                                        <select class="form-control scrollable-menu" id="pilih-kecamatan" name="pilihKecamatan" onchange="pilihKecamatanEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih Kecamatan</option>
-                                                <option value="2" data-price="{{price}}">Batam Kota</option>
-                                                <option value="2" data-price="{{price}}">Bengkong</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div id="existing-product">
-                                    <div class="form-group">
-                                        <label id="kelurahan-label" for="product_name">Kelurahan</label>
-                                        <select class="form-control scrollable-menu" id="pilih-kelurahan" name="pilihKelurahan" onchange="pilihKelurahanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
-                                            <option value="" selected disabled>Pilih Kelurahan</option>
-                                                <option value="2" data-price="{{price}}">Sadai</option>
-                                                <option value="2" data-price="{{price}}">Bengkong Indah</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div id="existing-product">
-                                    <div class="form-group">
-                                        <label id="caleg-label" for="product_name">Calon Legistlatif</label>
-                                        <select class="form-control scrollable-menu" id="pilih-caleg" name="pilihCaleg" onchange="pilihCalegEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
-                                            <option value="" selected disabled>Pilih Caleg</option>
-                                                <option value="2" data-price="{{price}}">Anto Selang</option>
-                                                <option value="2" data-price="{{price}}">Ujang</option>
+                                                <option value="1" data-price="{{price}}">BATAM KOTA</option>
+                                                <option value="2" data-price="{{price}}">LUBUK BAJA</option>
+                                                <option value="3" data-price="{{price}}">BENGKONG</option>
+                                                <option value="4" data-price="{{price}}">BATU AMPAR</option>
+                                                <option value="5" data-price="{{price}}">NONGSA</option>
+                                                <option value="6" data-price="{{price}}">SEI BEDUK</option>
+                                                <option value="7" data-price="{{price}}">BULANG</option>
+                                                <option value="8" data-price="{{price}}">GALANG</option>
+                                                <option value="9" data-price="{{price}}">SAGULUNG</option>
+                                                <option value="10" data-price="{{price}}">BATU AJI</option>
+                                                <option value="11" data-price="{{price}}">SEKUPANG</option>
+                                                <option value="12" data-price="{{price}}">BELAKANG PADANG</option>
                                         </select>
                                     </div>
                                 </div>
@@ -153,44 +153,19 @@
             </div>
         </div>
         <script>
-            // Get Elemen Card by ID
-            const cardHitungSuara = document.getElementById("card-hitungsuara");
-            const cardPilihCaleg = document.getElementById("card-pilihcaleg");
-            // Select Form
-            const pilihDapil = document.getElementById("pilih-dapil");
-            const pilihKecamatan = document.getElementById("pilih-kecamatan");
-            const pilihKelurahan = document.getElementById("pilih-kelurahan");
-            const pilihCaleg = document.getElementById("pilih-caleg");
-            // Button Submit
-            const submitPilihCaleg = document.getElementById("submit-pilihcaleg")
-            const loadingPilih = document.getElementById("loading-pilih");
-            // Function Event Select Form
-            function pilihDapilEvent(){
-                if (pilihDapil.selectedIndex !== 0) {
-                    pilihKecamatan.removeAttribute("disabled");
+            const pilihJenisHitungSuara = document.getElementById("pilih-jenis-hitung-suara");
+            // Row
+            const dapilRow = document.getElementById("dapil-row");
+            const kecamatanRow = document.getElementById("kecamatan-row")
+            function pilihJenisHitungSuaraEvent() {
+                if (pilihJenisHitungSuara.selectedIndex === 1) {
+                    dapilRow.removeAttribute("hidden");
+                } else if(pilihJenisHitungSuara.selectedIndex === 2){
+                    kecamatanRow.removeAttribute("hidden");
                 } else {
-                    pilihKecamatan.setAttribute("disabled", true)
+                    dapilRow.setAttribute("hidden", true)
+                    kecamatanRow.setAttribute("hidden", true)
                 }
-            }
-            function pilihKecamatanEvent() {
-                if (pilihKecamatan.selectedIndex !== 0) {
-                    pilihKelurahan.removeAttribute("disabled");
-                }
-            }
-            function pilihKelurahanEvent() {
-                if (pilihKelurahan.selectedIndex !== 0) {
-                    pilihCaleg.removeAttribute("disabled")
-                }
-            }
-            function pilihCalegEvent() {
-                if (pilihCaleg.selectedIndex !== 0) {
-                    submitPilihCaleg.removeAttribute("disabled")
-                }
-            }
-            // Menampilkan Form Hitung Suara
-            function tampilkanHitungSuara() {
-                cardHitungSuara.removeAttribute("hidden");
-                cardPilihCaleg.setAttribute("hidden", true);
             }
             // Event untuk triger button submit
             submitPilihCaleg.addEventListener("click", function (event) {
