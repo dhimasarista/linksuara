@@ -2,6 +2,7 @@ package models
 
 import (
 	"database/sql"
+	"linksuara/app/config"
 	"time"
 
 	"gorm.io/gorm"
@@ -19,4 +20,16 @@ type Kecamatan struct {
 	CreatedAt time.Time      `gorm:"column:created_at" json:"created_at"`
 	UpdatedAt time.Time      `gorm:"column:updated_at" json:"updated_at"`
 	DeletedAt gorm.DeletedAt `gorm:"column:deleted_at" json:"deleted_at"`
+}
+
+func (k *Kecamatan) GetByID(id int) error {
+	db := config.ConnectGormDB()
+
+	query := "SELECT * FROM kecamatan WHERE id = ?;"
+	results := db.Raw(query, id).Scan(&k)
+	if results.Error != nil {
+		return results.Error
+	}
+
+	return nil
 }
