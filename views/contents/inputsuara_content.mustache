@@ -40,8 +40,8 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                        <button id="submit-hitungsuara" class="btn btn-primary" type="button" disabled>
-                                            <span id="loading-hitungsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
+                                        <button id="submit-inputsuara" class="btn btn-primary" type="button" disabled>
+                                            <span id="loading-inputsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
                                         </button>
                                 </div>
                             </div>
@@ -193,8 +193,8 @@
                     submitPilihCaleg.removeAttribute("disabled")
                 }
             }
-            // Menampilkan Form Hitung Suara
-            function tampilkanHitungSuara() {
+            // Menampilkan Form Input Suara
+            function tampilkanInputSuara() {
                 cardInputSuara.removeAttribute("hidden");
                 cardPilihCaleg.setAttribute("hidden", true);
             }
@@ -208,11 +208,55 @@
                 setTimeout(() => {
                     loadingPilih.classList.remove("spinner-border");
                     loadingPilih.innerText = "Submit";
-                    tampilkanHitungSuara();
+                    tampilkanInputSuara();
                 }, 1000);
             })
 
         </script>
+    </div> 
+    <div class="card shadow mb-4" id="card-inputsuara-tps" hidden>
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Nama Calegnya</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped" id="tabel-inputsuara-pertps" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nomor TPS</th>
+                                <th>Jumlah Suara</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TPS 1</td>
+                                <td>
+                                    <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
+                                </td>
+                                <td>
+                                    <button id="submit-inputsuara" class="btn btn-primary" type="button">
+                                        <span id="loading-inputsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Update</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>TPS 2</td>
+                                <td>
+                                    <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
+                                </td>
+                                <td>
+                                    <button id="submit-inputsuara" class="btn btn-primary" type="button">
+                                        <span id="loading-inputsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Update</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div> 
     <div class="card shadow mb-4" id="card-pilihjenis-inputsuara">
         <div class="card">
@@ -225,9 +269,37 @@
                                     <div class="form-group">
                                         <label id="pilihdapil-label" for="pilih-dapil">Pilih Jenis Input Suara</label>
                                         <select class="form-control scrollable-menu" id="pilihjenis-inputsuara" name="pilihDapil" onchange="pilihJenisInputSuaraEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
+                                            <option value="" selected disabled>Pilih Jenis Input Suara</option>
+                                            <option value="1" >Input Suara TPS</option>
+                                            <option value="2" >Input Suara Caleg</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="input-suara-caleg-pilih-dapil" hidden>
+                            <div class="col-md-12">
+                            <div id="existing-product">
+                                    <div class="form-group">
+                                        <label id="pilihdapil-label" for="pilih-dapil">Pilih Dapil</label>
+                                        <select class="form-control scrollable-menu" id="pilih-dapil-input-semua-tps" name="pilihDapil" onchange="inputSuaraCalegPilihDapil()" onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih Dapil</option>
-                                            <option value="1" >Input Per-TPS</option>
-                                            <option value="1" >Input Per-Caleg</option>
+                                            <option value="1" >Dapil 1 Batam Kota - Lubuk Baja</option>
+                                            <option value="2" >Dapil 2 Bengkong - Batu Ampar</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="input-suara-caleg-pilih-caleg" hidden>
+                            <div class="col-md-12">
+                            <div id="existing-product">
+                                    <div class="form-group">
+                                        <label id="pilihdapil-label" for="pilih-dapil">Pilih Caleg</label>
+                                        <select class="form-control scrollable-menu" id="pilih-caleg-input-semua-tps" name="pilihDapil" onchange="inputSuaraCalegPilihCaleg()" onfocus="this.size=1;" onchange='this.size=1;'>
+                                            <option value="" selected disabled>Pilih Jenis Input Suara</option>
+                                            <option value="1" >Anto Selang</option>
+                                            <option value="2" >Ujang Solar</option>
                                         </select>
                                     </div>
                                 </div>
@@ -246,11 +318,21 @@
                         const pilihJenisInputSuara = document.getElementById("pilihjenis-inputsuara");
                         const buttonPilihJenisInputSuara = document.getElementById("submit-pilihjenis-inputsuara");
                         const loadingPilihJenisInputSuara = document.getElementById("loading-pilihjenis-inputsuara");
+                        
+                        const cardInputSuaraSuaraTps = document.getElementById("card-inputsuara-tps");
+
+                        const rowInputSuaraCalegPilihDapil = document.getElementById("input-suara-caleg-pilih-dapil");
+                        const rowInputSuaraCalegPilihCaleg = document.getElementById("input-suara-caleg-pilih-caleg");
+                        const pilihDapilInputSemuaTps = document.getElementById("pilih-dapil-input-semua-tps");
+                        const pilihCalegInputSemuaTps = document.getElementById("pilih-caleg-input-semua-tps");
+
                         const pilihJenisInputSuaraEvent = () => {
-                            if (pilihJenisInputSuara.selectedIndex !== 0) {
-                                buttonPilihJenisInputSuara.removeAttribute("disabled");
+                            if (pilihJenisInputSuara.selectedIndex === 2) {
+                                // buttonPilihJenisInputSuara.removeAttribute("disabled");
+                                rowInputSuaraCalegPilihDapil.removeAttribute("hidden");
+
                             } else {
-                                buttonPilihJenisInputSuara.setAttribute("disabled", true);
+                                rowInputSuaraCalegPilihDapil.setAttribute("hidden", true);
                             }
                         }
 
@@ -260,16 +342,35 @@
                             loadingPilihJenisInputSuara.innerText = "";
                             loadingPilihJenisInputSuara.classList.add("spinner-border");
 
-                            if (pilihJenisInputSuara.selectedIndex === 2) {
+                            if (pilihJenisInputSuara.selectedIndex === 1) {
                                 setTimeout(() => {
-                                loadingPilihJenisInputSuara.classList.remove("spinner-border");
-                                loadingPilihJenisInputSuara.innerText = "Submit";
-                                
-                                cardPilihCaleg.removeAttribute("hidden");
-                                cardPilihJenisInputSuara.setAttribute("hidden", true)
-                            }, 1000);
+                                    loadingPilihJenisInputSuara.classList.remove("spinner-border");
+                                    loadingPilihJenisInputSuara.innerText = "Submit";
+                                    
+                                    cardPilihCaleg.removeAttribute("hidden");
+                                    cardPilihJenisInputSuara.setAttribute("hidden", true)
+                                }, 1000);
+                            } else if (pilihJenisInputSuara.selectedIndex === 2) {
+                                setTimeout(() => {
+                                    loadingPilihJenisInputSuara.classList.remove("spinner-border");
+                                    loadingPilihJenisInputSuara.innerText = "Submit";
+                                    
+                                    cardInputSuaraSuaraTps.removeAttribute("hidden");
+                                    cardPilihJenisInputSuara.setAttribute("hidden", true)
+                                }, 1000);
                             }
-                        })
+                        });
+
+                        function inputSuaraCalegPilihDapil() {
+                            if (pilihDapilInputSemuaTps.selectedIndex !== 0) {
+                                rowInputSuaraCalegPilihCaleg.removeAttribute("hidden")
+                            }
+                        }
+                        function inputSuaraCalegPilihCaleg() {
+                            if (pilihCalegInputSemuaTps.selectedIndex !== 0) {
+                                buttonPilihJenisInputSuara.removeAttribute("disabled");
+                            }
+                        }
                     </script>
                 </div>	
             </div>
@@ -277,4 +378,9 @@
     </div> 
 </div>
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const orderGoingTable = $('#tabel-inputsuara-pertps').DataTable({
+            "order": [[0, 'asc']] // Mengurutkan berdasarkan kolom pertama secara menaik
+        });
+    });
 </script>
