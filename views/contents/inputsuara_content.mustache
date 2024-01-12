@@ -49,7 +49,7 @@
                                     <table class="table table-bordered table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Foto Hasil Perhitungan</th>
+                                                <th>Foto Hasil Perhitungan <span class="required-text">*Required</span></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -61,6 +61,7 @@
                                             
                                         </tbody>
                                     </table>
+                                    <p class="required-text"><i>Note: Mohon input semua suara calon, untuk mengkalkulasi semua perhitungan suara.</i></p>
                                 </div>
                             </div>
                             <script>
@@ -90,7 +91,8 @@
                                         <label id="pilihdapil-label" for="pilih-dapil">Daerah Pemilihan</label>
                                         <select class="form-control scrollable-menu" id="pilih-dapil" name="pilihDapil" onchange="pilihDapilEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih Dapil</option>
-                                            <option value="2" data-price="{{price}}">DAPIL 2 BATAM KOTA - LUBUK BAJA</option>
+                                            <option value="1" data-price="{{price}}">DAPIL 1 BATAM KOTA - LUBUK BAJA</option>
+                                            <option value="2" data-price="{{price}}">DAPIL 2 BENGKONG - BATU AMPAR</option>
                                         </select>
                                     </div>
                                 </div>
@@ -163,10 +165,16 @@
             const loadingPilih = document.getElementById("loading-pilih");
             // Function Event Select Form
             function pilihDapilEvent(){
+                pilihKecamatan.selectedIndex = 0;
+                pilihKelurahan.selectedIndex = 0;
+                pilihCaleg.selectedIndex = 0;
+
+                pilihKelurahan.setAttribute("disabled", true);
+                pilihCaleg.setAttribute("disabled", true);
                 if (pilihDapil.selectedIndex !== 0) {
                     pilihKecamatan.removeAttribute("disabled");
                 } else {
-                    pilihKecamatan.setAttribute("disabled", true)
+                    pilihKecamatan.setAttribute("disabled", true);
                 }
             }
             function pilihKecamatanEvent() {

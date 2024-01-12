@@ -19,3 +19,9 @@ body {
 .hidden {
     display: none !important;
 }
+
+.required-text{
+    font-size: 13px;
+    font-weight: lighter;
+    color: red;
+}
