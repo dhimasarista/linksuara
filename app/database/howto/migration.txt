@@ -3,8 +3,8 @@ Menginstall Golang Migrate:
 Membuat File/Table Untuk Migrate:
 => migrate create -ext sql -dir app/database/migrations create_table_users
 Untuk Mengeksekusi Migrate:
-=> migrate -database "mysql://root@tcp(localhost:3306)/logistica" -path app/database/migrations up
-=> migrate -database "mysql://root@tcp(localhost:3306)/logistica" -path app/database/migrations down
+=> migrate -database "mysql://root@tcp(localhost:3306)/linksuara" -path app/database/migrations up
+=> migrate -database "mysql://root@tcp(localhost:3306)/linksuara" -path app/database/migrations down
 
 Cara Ekspor folder /go/bin dilinux:
 => export PATH=$PATH:/home/dhimasarista/go/bin

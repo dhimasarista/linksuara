@@ -58,13 +58,29 @@ CREATE TABLE caleg (
 CREATE TABLE jumlah_suara (
   id INT PRIMARY KEY,
   jumlah INT,
-  foto LONGBLOB,
-  keterangan VARCHAR(255),
+  dapil_id INT,
+  kecamatan_id INT,
+  kelurahan_id INT,
   tps_id INT,
   caleg_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   deleted_at TIMESTAMP NULL,
+  FOREIGN KEY (dapil_id) REFERENCES dapil(id),
+  FOREIGN KEY (kecamatan_id) REFERENCES kecamatan(id),
+  FOREIGN KEY (kelurahan_id) REFERENCES kelurahan(id),
   FOREIGN KEY (tps_id) REFERENCES tps(id),
   FOREIGN KEY (caleg_id) REFERENCES caleg(id)
 );
+
+CREATE TABLE bukti_suara (
+  id INT PRIMARY KEY,
+  foto BLOB,
+  keterangan VARCHAR(255),
+  jumlah_suara_id INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP NULL,
+  FOREIGN KEY (jumlah_suara_id) REFERENCES jumlah_suara(id)
+);
+

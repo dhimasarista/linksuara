@@ -1,7 +1,10 @@
 package routes
 
 import (
+	"fmt"
 	"linksuara/app/handlers"
+	"log"
+	"strings"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/session"
@@ -27,3 +30,23 @@ func ErrorRoutes(app *fiber.App, store *session.Store) {
 		return c.Redirect("/error?code=418&title=I`am+a+Teapot&message=hahahahahahhahahahahahahhahaha...")
 	})
 }
+
+// Routing tambahan
+func InternalServerError(c *fiber.Ctx, message string) error {
+	log.Println(message)
+	var messageFormatted = strings.Replace(message, " ", "+", -1)
+	var path = fmt.Sprintf("/error?code=500&title=Internal+Server+Error&message=%s", messageFormatted)
+	return c.Redirect(path)
+}
+
+// func HandleErrorAndRollback(tx *gorm.Tx, err error, c *fiber.Ctx) error {
+// 	if err != nil {
+// 		log.Println(err)
+// 		tx.Rollback()
+// 		return c.JSON(fiber.Map{
+// 			"error":  err.Error(),
+// 			"status": fiber.StatusInternalServerError,
+// 		})
+// 	}
+// 	return nil
+// }

@@ -1,24 +1,27 @@
 INSERT INTO users VALUES(1, "kotabatam", "merdeka2024", NOW(), NOW(), NULL);
 
-INSERT INTO dapil VALUES(1, "batam kota - lubuk baja",  NOW(), NOW(), NULL);
-INSERT INTO dapil VALUES(2, "bengkong - batu ampar",  NOW(), NOW(), NULL);
-INSERT INTO dapil VALUES(3, "nongsa - sei beduk - bulang - galang",  NOW(), NOW(), NULL);
-INSERT INTO dapil VALUES(4, "sagulung",  NOW(), NOW(), NULL);
-INSERT INTO dapil VALUES(5, "batu aji",  NOW(), NOW(), NULL);
-INSERT INTO dapil VALUES(6, "sekupang - belakang padang",  NOW(), NOW(), NULL);
+-- Perintah INSERT untuk tabel dapil
+INSERT INTO dapil VALUES(1, "batam kota - lubuk baja", NOW(), NOW(), NULL);
+INSERT INTO dapil VALUES(2, "bengkong - batu ampar", NOW(), NOW(), NULL);
+INSERT INTO dapil VALUES(3, "nongsa - sei beduk - bulang - galang", NOW(), NOW(), NULL);
+INSERT INTO dapil VALUES(4, "sagulung", NOW(), NOW(), NULL);
+INSERT INTO dapil VALUES(5, "batu aji", NOW(), NOW(), NULL);
+INSERT INTO dapil VALUES(6, "sekupang - belakang padang", NOW(), NOW(), NULL);
 
-INSERT INTO kecamatan VALUES(11, "batam kota",  NOW(), NOW(), NULL);
-INSERT INTO kecamatan VALUES(12, "lubuk baja",  NOW(), NOW(), NULL);
-INSERT INTO kecamatan VALUES(21, "bengkong",  NOW(), NOW(), NULL);
-INSERT INTO kecamatan VALUES(22, "batu ampar",  NOW(), NOW(), NULL);
-INSERT INTO kecamatan VALUES(31, "nongsa",  NOW(), NOW(), NULL);
-INSERT INTO kecamatan VALUES(32, "sei beduk",  NOW(), NOW(), NULL);
-INSERT INTO kecamatan VALUES(33, "bulang",  NOW(), NOW(), NULL);
-INSERT INTO kecamatan VALUES(34, "galang",  NOW(), NOW(), NULL);
-INSERT INTO kecamatan VALUES(41, "sagulung",  NOW(), NOW(), NULL);
-INSERT INTO kecamatan VALUES(51, "batu aji",  NOW(), NOW(), NULL);
-INSERT INTO kecamatan VALUES(61, "sekupang",  NOW(), NOW(), NULL);
-INSERT INTO kecamatan VALUES(62, "belakang padang",  NOW(), NOW(), NULL);
+-- Perintah INSERT untuk tabel kecamatan
+INSERT INTO kecamatan VALUES(11, "batam kota", 1, NOW(), NOW(), NULL);
+INSERT INTO kecamatan VALUES(12, "lubuk baja", 1, NOW(), NOW(), NULL);
+INSERT INTO kecamatan VALUES(21, "bengkong", 2, NOW(), NOW(), NULL);
+INSERT INTO kecamatan VALUES(22, "batu ampar", 2, NOW(), NOW(), NULL);
+INSERT INTO kecamatan VALUES(31, "nongsa", 3, NOW(), NOW(), NULL);
+INSERT INTO kecamatan VALUES(32, "sei beduk", 3, NOW(), NOW(), NULL);
+INSERT INTO kecamatan VALUES(33, "bulang", 3, NOW(), NOW(), NULL);
+INSERT INTO kecamatan VALUES(34, "galang", 3, NOW(), NOW(), NULL);
+INSERT INTO kecamatan VALUES(41, "sagulung", 4, NOW(), NOW(), NULL);
+INSERT INTO kecamatan VALUES(51, "batu aji", 5, NOW(), NOW(), NULL);
+INSERT INTO kecamatan VALUES(61, "sekupang", 6, NOW(), NOW(), NULL);
+INSERT INTO kecamatan VALUES(62, "belakang padang", 6, NOW(), NOW(), NULL);
+
 
 -- Kelurahan untuk Kecamatan Batam Kota (Kode Kecamatan: 11)
 INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
@@ -86,7 +89,7 @@ INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
 (348, "Subang Mas", NOW(), NOW(), 34);
 
 -- Kelurahan untuk Dapil Sagulung (Kode Dapil: 4)
-INSERT INTO kelurahan (id_kelurahan, nama_kelurahan, created_at, updated_at, id_kecamatan) VALUES
+INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
 (411, "Sagulung Kota", NOW(), NOW(), 41),
 (412, "Sungai Binti", NOW(), NOW(), 41),
 (413, "Sungai Langkai", NOW(), NOW(), 41),
@@ -94,13 +97,13 @@ INSERT INTO kelurahan (id_kelurahan, nama_kelurahan, created_at, updated_at, id_
 (415, "Sungai Pelunggut", NOW(), NOW(), 41),
 (416, "Tembesi", NOW(), NOW(), 41);
 
-INSERT INTO kelurahan (id_kelurahan, nama_kelurahan, created_at, updated_at, id_kecamatan) VALUES
+INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
 (511, "Bukit Tempayan", NOW(), NOW(), 51),
 (512, "Buliang", NOW(), NOW(), 51),
 (513, "Kibing", NOW(), NOW(), 51),
 (514, "Tanjung Uncang", NOW(), NOW(), 51);
 
-INSERT INTO kelurahan (id_kelurahan, nama_kelurahan, created_at, updated_at, id_kecamatan) VALUES
+INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
 (611, "Patam Lestari", NOW(), NOW(), 61),
 (612, "Sungai Harapan", NOW(), NOW(), 61),
 (613, "Tanjung Pinggir", NOW(), NOW(), 61),
@@ -109,7 +112,7 @@ INSERT INTO kelurahan (id_kelurahan, nama_kelurahan, created_at, updated_at, id_
 (616, "Tiban Indah", NOW(), NOW(), 61),
 (617, "Tiban Lama", NOW(), NOW(), 61);
 
-INSERT INTO kelurahan (id_kelurahan, nama_kelurahan, created_at, updated_at, id_kecamatan) VALUES
+INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
 (621, "Kasu", NOW(), NOW(), 62),
 (622, "Pecong", NOW(), NOW(), 62),
 (623, "Pemping", NOW(), NOW(), 62),

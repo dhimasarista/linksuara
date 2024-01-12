@@ -2,6 +2,7 @@ package main
 
 import (
 	"linksuara/app/routes"
+	"linksuara/app/utility"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -16,6 +17,8 @@ var store = *session.New(session.ConfigDefault)
 // var client = *resty.New()
 
 func main() {
+	utility.ClearScreen() // Membersihkan Tampilan Console
+
 	engine := mustache.New("./views", ".mustache") // Init template engine
 	app := fiber.New(fiber.Config{
 		Views: engine,
