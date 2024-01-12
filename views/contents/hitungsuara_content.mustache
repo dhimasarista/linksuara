@@ -104,7 +104,7 @@
                             <div id="existing-product">
                                     <div class="form-group">
                                         <label id="dapil-label" for="dapil-name">DAERAH PEMILIHAN</label>
-                                        <select class="form-control scrollable-menu" id="pilih-DAPIL" name="pilihDapil" onchange="pilihKecamatanEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
+                                        <select class="form-control scrollable-menu" id="pilih-dapil" name="pilihDapil" onchange="checkPilihDapil()" onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih Dapil</option>
                                                 <option value="1" data-price="{{price}}">DAPIL 1 BATAM KOTA - LUBUK BAJA</option>
                                                 <option value="2" data-price="{{price}}">DAPIL 2 BENGKONG - BATU AMPAR</option>
@@ -141,9 +141,40 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row" id="kelurahan-row" hidden>
+                            <div class="col-md-12">
+                            <div id="existing-product">
+                                    <div class="form-group">
+                                        <label id="dapil-label" for="dapil-name">KELURAHAN</label>
+                                        <select class="form-control scrollable-menu" id="pilih-kelurahan" name="pilihKelurahan" onchange="pilihKecamatanEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
+                                            <option value="" selected disabled>Pilih Kelurahan</option>
+                                                <option value="1" data-price="{{price}}">BATU BESAR</option>
+                                                <option value="2" data-price="{{price}}">KABIL</option>
+                                                <option value="3" data-price="{{price}}">SAMBAU</option>
+                                                <option value="4" data-price="{{price}}">NGENANG</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="caleg-row" hidden>
+                            <div class="col-md-12">
+                            <div id="existing-product">
+                                    <div class="form-group">
+                                        <label id="dapil-label" for="dapil-name">CALEG</label>
+                                        <select class="form-control scrollable-menu" id="pilih-caleg" name="pilihCaleg" onchange="pilihKecamatanEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
+                                            <option value="" selected disabled>Pilih Caleg</option>
+                                                <option value="1" data-price="{{price}}">ANTO SELANG</option>
+                                                <option value="2" data-price="{{price}}">UJANG</option>
+                                                <option value="3" data-price="{{price}}">UDIN</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-2">
-                                <button id="submit-pilihcaleg" class="btn btn-primary" type="button" disabled>
+                                <button id="submit-jenis-hitung-suara" class="btn btn-primary" type="button" disabled>
                                     <span id="loading-pilih" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
                                 </button>
                             </div>
@@ -154,21 +185,89 @@
         </div>
         <script>
             const pilihJenisHitungSuara = document.getElementById("pilih-jenis-hitung-suara");
+            const buttonSubmitHitungSuara = document.getElementById("submit-jenis-hitung-suara");
             // Row
             const dapilRow = document.getElementById("dapil-row");
-            const kecamatanRow = document.getElementById("kecamatan-row")
+            const kecamatanRow = document.getElementById("kecamatan-row");
+            const kelurahanRow = document.getElementById("kelurahan-row");
+            const calegRow = document.getElementById("caleg-row");
+
+            // Opsi pilih
+            const pilihDapil = document.getElementById("pilih-dapil");
+            const pilihKecamatan = document.getElementById("pilih-kecamatan");
+            const pilihKelurahan = document.getElementById("pilih-kelurahan");
+            const pilihCaleg = document.getElementById("pilih-caleg");
             function pilihJenisHitungSuaraEvent() {
                 if (pilihJenisHitungSuara.selectedIndex === 1) {
                     dapilRow.removeAttribute("hidden");
+
+                    // Menyembunyikan Opsi Lain
+                    kecamatanRow.setAttribute("hidden", true)
+                    kelurahanRow.setAttribute("hidden", true);
+                    calegRow.setAttribute("hidden", true);
+                    // Disabled button submit
+                    buttonSubmitHitungSuara.setAttribute("disabled", true);
+                    // Clear Selection
+                    clearSelectionAll();
                 } else if(pilihJenisHitungSuara.selectedIndex === 2){
                     kecamatanRow.removeAttribute("hidden");
+
+                    // Menyembunyikan Opsi Lain
+                    dapilRow.setAttribute("hidden", true);
+                    kelurahanRow.setAttribute("hidden", true);
+                    buttonSubmitHitungSuara.setAttribute("disabled", true);
+
+                    // Clear Selection
+                    clearSelectionAll();
+                } else if(pilihJenisHitungSuara.selectedIndex === 3) {
+                    kecamatanRow.removeAttribute("hidden");
+                    kelurahanRow.removeAttribute("hidden");
+                    // Menyembunyikan Opsi Lain
+                    dapilRow.setAttribute("hidden", true)
+                    calegRow.setAttribute("hidden", true);
+                    buttonSubmitHitungSuara.setAttribute("disabled", true);
+
+                    // Clear Selection
+                    clearSelectionAll();
+                } else if(pilihJenisHitungSuara.selectedIndex === 4){
+                    calegRow.removeAttribute("hidden");
+
+                    dapilRow.setAttribute("hidden", true);
+                    kecamatanRow.setAttribute("hidden", true);
+                    kelurahanRow.setAttribute("hidden", true);
+                    buttonSubmitHitungSuara.setAttribute("disabled", true);
+
+                    // Clear Selection
+                    clearSelectionAll();
                 } else {
                     dapilRow.setAttribute("hidden", true)
                     kecamatanRow.setAttribute("hidden", true)
+                    kelurahanRow.setAttribute("hidden", true);
+                    calegRow.setAttribute("hidden", true);
+
+                    // Clear Selection
+                    clearSelectionAll();
                 }
             }
+            function checkPilihDapil() {
+                // Mengizinkan button submit
+                if (pilihDapil.selectedIndex !== 0) {
+                    buttonSubmitHitungSuara.removeAttribute("disabled");
+                } else {
+                    buttonSubmitHitungSuara.setAttribute("disabled", true);
+                }
+            }
+            function clearSelection(params) {
+                params.selectedIndex = 0;
+            }
+            function clearSelectionAll() {
+                clearSelection(pilihDapil);
+                clearSelection(pilihKecamatan);
+                clearSelection(pilihKelurahan);
+                clearSelection(pilihCaleg);
+            }
             // Event untuk triger button submit
-            submitPilihCaleg.addEventListener("click", function (event) {
+            buttonSubmitHitungSuara.addEventListener("click", function (event) {
                 event.preventDefault();
 
                 loadingPilih.innerText = "";
