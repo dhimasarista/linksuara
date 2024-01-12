@@ -280,6 +280,12 @@
                     deactiveButtonSubmit();
                 }
             }
+            function checkPilihCaleg() {
+                if (pilihCaleg.selectedIndex === 0) {
+                    deactiveButtonSubmit();
+                }
+                activeButtonSubmit();
+            }
 
             function clearSelection(params) {
                 params.selectedIndex = 0;

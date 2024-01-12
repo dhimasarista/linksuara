@@ -5,78 +5,78 @@
         <!-- <div id="add-stocks-button"><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i>New Order</i></a></div>
         <div id="return-button" hidden><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i>Return</i></a></div> -->
     </div>
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4" id="card-hitungsuara" hidden>
-            <div class="card">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">BATAM KOTA - BELIAN - TPS 22</h6>
-                    
-                </div>
-                <div class="card-body">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="on-going-button">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nama</th>
-                                                    <th>Jumlah Suara</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Gilang Solar</td>
-                                                    <td>
-                                                        <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Anto Selang</td>
-                                                    <td>
-                                                        <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                            <button id="submit-hitungsuara" class="btn btn-primary" type="button" disabled>
-                                                <span id="loading-hitungsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
-                                            </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4" id="card-inputsuara" hidden>
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">BATAM KOTA - BELIAN - TPS 22</h6>
+                
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="on-going-button">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Foto Hasil Perhitungan <span class="required-text">*Required</span></th>
+                                                <th>Nama</th>
+                                                <th>Jumlah Suara</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
+                                                <td>Gilang Solar</td>
                                                 <td>
-                                                    <input type="file" accept="image/*" name="buktiFoto" id="bukti-foto">
+                                                    <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
                                                 </td>
                                             </tr>
-                                            
+                                            <tr>
+                                                <td>Anto Selang</td>
+                                                <td>
+                                                    <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
-                                    <span class="required-text"><h6><i>Note: Mohon input semua suara calon, untuk mengkalkulasi semua perhitungan suara.</i></h6></span>
+                                        <button id="submit-hitungsuara" class="btn btn-primary" type="button" disabled>
+                                            <span id="loading-hitungsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
+                                        </button>
                                 </div>
                             </div>
-                            <script>
-                                // document.addEventListener('DOMContentLoaded', function() {
-                                //     const orderGoingTable = $('#tabel-caleg').DataTable({
-                                //         "order": [[0, 'desc']] // Mengurutkan berdasarkan kolom pertama secara menaik
-                                //     });
-                                // });
-                            </script>
+                            <div class="col-md-6">
+                                <table class="table table-bordered table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Foto Hasil Perhitungan <span class="required-text">*Required</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input type="file" accept="image/*" name="buktiFoto" id="bukti-foto">
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                                <span class="required-text"><h6><i>Note: Mohon input semua suara calon, untuk mengkalkulasi semua perhitungan suara.</i></h6></span>
+                            </div>
                         </div>
+                        <script>
+                            // document.addEventListener('DOMContentLoaded', function() {
+                            //     const orderGoingTable = $('#tabel-caleg').DataTable({
+                            //         "order": [[0, 'desc']] // Mengurutkan berdasarkan kolom pertama secara menaik
+                            //     });
+                            // });
+                        </script>
                     </div>
                 </div>
             </div>
         </div>
-    <div class="card shadow mb-4" id="card-pilihcaleg">
+    </div>
+    <div class="card shadow mb-4" id="card-pilihcaleg" hidden>
         <div class="card">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Pilih Caleg</h6>
@@ -154,7 +154,7 @@
         </div>
         <script>
             // Get Elemen Card by ID
-            const cardHitungSuara = document.getElementById("card-hitungsuara");
+            const cardInputSuara = document.getElementById("card-inputsuara");
             const cardPilihCaleg = document.getElementById("card-pilihcaleg");
             // Select Form
             const pilihDapil = document.getElementById("pilih-dapil");
@@ -195,7 +195,7 @@
             }
             // Menampilkan Form Hitung Suara
             function tampilkanHitungSuara() {
-                cardHitungSuara.removeAttribute("hidden");
+                cardInputSuara.removeAttribute("hidden");
                 cardPilihCaleg.setAttribute("hidden", true);
             }
             // Event untuk triger button submit
@@ -213,7 +213,68 @@
             })
 
         </script>
-    </div>
+    </div> 
+    <div class="card shadow mb-4" id="card-pilihjenis-inputsuara">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-wrap">	
+                    <form id="survey-form">
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div id="existing-product">
+                                    <div class="form-group">
+                                        <label id="pilihdapil-label" for="pilih-dapil">Pilih Jenis Input Suara</label>
+                                        <select class="form-control scrollable-menu" id="pilihjenis-inputsuara" name="pilihDapil" onchange="pilihJenisInputSuaraEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
+                                            <option value="" selected disabled>Pilih Dapil</option>
+                                            <option value="1" >Input Per-TPS</option>
+                                            <option value="1" >Input Per-Caleg</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button id="submit-pilihjenis-inputsuara" class="btn btn-primary" type="button" disabled>
+                                    <span id="loading-pilihjenis-inputsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <script>
+                        const cardPilihJenisInputSuara = document.getElementById("card-pilihjenis-inputsuara");
+                        const pilihJenisInputSuara = document.getElementById("pilihjenis-inputsuara");
+                        const buttonPilihJenisInputSuara = document.getElementById("submit-pilihjenis-inputsuara");
+                        const loadingPilihJenisInputSuara = document.getElementById("loading-pilihjenis-inputsuara");
+                        const pilihJenisInputSuaraEvent = () => {
+                            if (pilihJenisInputSuara.selectedIndex !== 0) {
+                                buttonPilihJenisInputSuara.removeAttribute("disabled");
+                            } else {
+                                buttonPilihJenisInputSuara.setAttribute("disabled", true);
+                            }
+                        }
+
+                        buttonPilihJenisInputSuara.addEventListener("click", () => {
+                            event.preventDefault();
+
+                            loadingPilihJenisInputSuara.innerText = "";
+                            loadingPilihJenisInputSuara.classList.add("spinner-border");
+
+                            if (pilihJenisInputSuara.selectedIndex === 2) {
+                                setTimeout(() => {
+                                loadingPilihJenisInputSuara.classList.remove("spinner-border");
+                                loadingPilihJenisInputSuara.innerText = "Submit";
+                                
+                                cardPilihCaleg.removeAttribute("hidden");
+                                cardPilihJenisInputSuara.setAttribute("hidden", true)
+                            }, 1000);
+                            }
+                        })
+                    </script>
+                </div>	
+            </div>
+        </div>
+    </div> 
 </div>
 <script>
 </script>
