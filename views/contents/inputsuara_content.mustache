@@ -6,7 +6,7 @@
         <div id="return-button" hidden><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i>Return</i></a></div> -->
     </div>
     <!-- DataTales Example -->
-    <div class="card shadow mb-4" id="card-inputsuara" hidden>
+    <div class="card shadow mb-4" id="card-input-suara-tps" hidden>
         <div class="card">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">BATAM KOTA - BELIAN - TPS 22</h6>
@@ -76,145 +76,7 @@
             </div>
         </div>
     </div>
-    <div class="card shadow mb-4" id="card-pilihcaleg" hidden>
-        <div class="card">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Pilih Caleg</h6>
-            </div>
-            <div class="card-body">
-                <div class="form-wrap">	
-                    <form id="survey-form">
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div id="existing-product">
-                                    <div class="form-group">
-                                        <label id="pilihdapil-label" for="pilih-dapil">Daerah Pemilihan</label>
-                                        <select class="form-control scrollable-menu" id="pilih-dapil" name="pilihDapil" onchange="pilihDapilEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
-                                            <option value="" selected disabled>Pilih Dapil</option>
-                                            {{#dapil}}
-                                                <option value="{{id}}" >Dapil {{nomor_dapil}} {{nama}}</option>
-                                            {{/dapil}}
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div id="existing-product">
-                                    <div class="form-group">
-                                        <label id="kecamatan-label" for="product_name">Kecamatan</label>
-                                        <select class="form-control scrollable-menu" id="pilih-kecamatan" name="pilihKecamatan" onchange="pilihKecamatanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
-                                            <option value="" selected disabled>Pilih Kecamatan</option>
-                                                <option value="2" data-price="{{price}}">Batam Kota</option>
-                                                <option value="2" data-price="{{price}}">Bengkong</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div id="existing-product">
-                                    <div class="form-group">
-                                        <label id="kelurahan-label" for="product_name">Kelurahan</label>
-                                        <select class="form-control scrollable-menu" id="pilih-kelurahan" name="pilihKelurahan" onchange="pilihKelurahanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
-                                            <option value="" selected disabled>Pilih Kelurahan</option>
-                                                <option value="2" data-price="{{price}}">Sadai</option>
-                                                <option value="2" data-price="{{price}}">Bengkong Indah</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div id="existing-product">
-                                    <div class="form-group">
-                                        <label id="caleg-label" for="product_name">Calon Legistlatif</label>
-                                        <select class="form-control scrollable-menu" id="pilih-caleg" name="pilihCaleg" onchange="pilihCalegEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
-                                            <option value="" selected disabled>Pilih Caleg</option>
-                                                <option value="2" data-price="{{price}}">Anto Selang</option>
-                                                <option value="2" data-price="{{price}}">Ujang</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <button id="submit-pilihcaleg" class="btn btn-primary" type="button" disabled>
-                                    <span id="loading-pilih" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>	
-            </div>
-        </div>
-        <script>
-            // Get Elemen Card by ID
-            const cardInputSuara = document.getElementById("card-inputsuara");
-            const cardPilihCaleg = document.getElementById("card-pilihcaleg");
-            // Select Form
-            const pilihDapil = document.getElementById("pilih-dapil");
-            const pilihKecamatan = document.getElementById("pilih-kecamatan");
-            const pilihKelurahan = document.getElementById("pilih-kelurahan");
-            const pilihCaleg = document.getElementById("pilih-caleg");
-            // Button Submit
-            const submitPilihCaleg = document.getElementById("submit-pilihcaleg")
-            const loadingPilih = document.getElementById("loading-pilih");
-            // Function Event Select Form
-            function pilihDapilEvent(){
-                pilihKecamatan.selectedIndex = 0;
-                pilihKelurahan.selectedIndex = 0;
-                pilihCaleg.selectedIndex = 0;
-
-                pilihKelurahan.setAttribute("disabled", true);
-                pilihCaleg.setAttribute("disabled", true);
-                if (pilihDapil.selectedIndex !== 0) {
-                    pilihKecamatan.removeAttribute("disabled");
-                } else {
-                    pilihKecamatan.setAttribute("disabled", true);
-                }
-            }
-            function pilihKecamatanEvent() {
-                if (pilihKecamatan.selectedIndex !== 0) {
-                    pilihKelurahan.removeAttribute("disabled");
-                }
-            }
-            function pilihKelurahanEvent() {
-                if (pilihKelurahan.selectedIndex !== 0) {
-                    pilihCaleg.removeAttribute("disabled")
-                }
-            }
-            function pilihCalegEvent() {
-                if (pilihCaleg.selectedIndex !== 0) {
-                    submitPilihCaleg.removeAttribute("disabled")
-                }
-            }
-            // Menampilkan Form Input Suara
-            function tampilkanInputSuara() {
-                cardInputSuara.removeAttribute("hidden");
-                cardPilihCaleg.setAttribute("hidden", true);
-            }
-            // Event untuk triger button submit
-            submitPilihCaleg.addEventListener("click", function (event) {
-                event.preventDefault();
-
-                loadingPilih.innerText = "";
-                loadingPilih.classList.add("spinner-border");
-
-                setTimeout(() => {
-                    loadingPilih.classList.remove("spinner-border");
-                    loadingPilih.innerText = "Submit";
-                    tampilkanInputSuara();
-                }, 1000);
-            })
-
-        </script>
-    </div> 
-    <div class="card shadow mb-4" id="card-inputsuara-tps" hidden>
+   <div class="card shadow mb-4" id="card-input-suara-caleg" hidden>
         <div class="card">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Nama Calegnya</h6>
@@ -320,7 +182,7 @@
                                 <div id="existing-product">
                                     <div class="form-group">
                                         <label id="kelurahan-label" for="product_name">Kelurahan</label>
-                                        <select class="form-control scrollable-menu" id="select-input-suara-pilih-kelurahan" name="pilihKelurahan" onchange="pilihKelurahanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
+                                        <select class="form-control scrollable-menu" id="select-input-suara-pilih-kelurahan" name="pilihKelurahan" onchange="inputSuaraPilihKelurahanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih Kelurahan</option>
                                             <option value="2" data-price="{{price}}">Sadai</option>
                                             <option value="2" data-price="{{price}}">Bengkong Indah</option>
@@ -336,7 +198,7 @@
                                 <div id="existing-product">
                                     <div class="form-group">
                                         <label id="tps-label" for="product_name">Tempat Pemilihan Suara</label>
-                                        <select class="form-control scrollable-menu" id="select-input-suara-tps-pilih-tps" name="pilihTps" onchange="pilihTpsEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
+                                        <select class="form-control scrollable-menu" id="select-input-suara-tps-pilih-tps" name="pilihTps" onchange="pilihInputSuaraTpsPilihTpsEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih TPS</option>
                                             <option value="2" data-price="{{price}}">Sadai</option>
                                             <option value="2" data-price="{{price}}">Bengkong Indah</option>
@@ -374,8 +236,10 @@
     
                     <!-- JavaScript Section -->
                     <script>
-                        
-                        const cardInputSuaraSuaraTps = document.getElementById("card-inputsuara-tps");
+                        // Get Elemen Card by ID
+                        const cardInputSuaraTps = document.getElementById("card-input-suara-tps");
+
+                        const cardInputSuaraCaleg = document.getElementById("card-input-suara-caleg");
                         const cardPilihJenisInputSuara = document.getElementById("card-pilihjenis-inputsuara");
                         const buttonPilihJenisInputSuara = document.getElementById("submit-pilihjenis-inputsuara");
                         const loadingPilihJenisInputSuara = document.getElementById("loading-pilihjenis-inputsuara");
@@ -434,6 +298,14 @@
                                 selectInputSuaraPilihKelurahan.removeAttribute("disabled");
                             }
                         }
+
+                        function inputSuaraPilihKelurahanEvent() {
+                            if (pilihJenisInputSuara.selectedIndex === 1) {
+                                selectInputSuaraTpsPilihTps.removeAttribute("disabled");
+                            } else if (pilihJenisInputSuara.selectedIndex === 2) {
+                                selectInputSuaraCalegPilihCaleg.removeAttribute("disabled");
+                            }
+                        }
     
                         // Button Pilih Jenis Input Suara Click Event Handler
                         buttonPilihJenisInputSuara.addEventListener("click", () => {
@@ -447,7 +319,7 @@
                                     loadingPilihJenisInputSuara.classList.remove("spinner-border");
                                     loadingPilihJenisInputSuara.innerText = "Submit";
     
-                                    cardPilihCaleg.removeAttribute("hidden");
+                                    cardInputSuaraTps.removeAttribute("hidden");
                                     cardPilihJenisInputSuara.setAttribute("hidden", true);
                                 }, 1000);
                             } else if (pilihJenisInputSuara.selectedIndex === 2) {
@@ -455,7 +327,7 @@
                                     loadingPilihJenisInputSuara.classList.remove("spinner-border");
                                     loadingPilihJenisInputSuara.innerText = "Submit";
     
-                                    cardInputSuaraSuaraTps.removeAttribute("hidden");
+                                    cardInputSuaraCaleg.removeAttribute("hidden");
                                     cardPilihJenisInputSuara.setAttribute("hidden", true);
                                 }, 1000);
                             }
@@ -464,6 +336,12 @@
                         // Input Suara Caleg Pilih Caleg Event Handler
                         function pilihInputSuaraCalegPilihCalegEvent() {
                             if (selectInputSuaraCalegPilihCaleg.selectedIndex !== 0) {
+                                buttonPilihJenisInputSuara.removeAttribute("disabled");
+                            }
+                        }
+
+                        function pilihInputSuaraTpsPilihTpsEvent() {
+                            if (selectInputSuaraTpsPilihTps.selectedIndex !== 0) {
                                 buttonPilihJenisInputSuara.removeAttribute("disabled");
                             }
                         }
