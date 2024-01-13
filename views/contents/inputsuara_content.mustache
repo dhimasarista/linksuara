@@ -304,7 +304,7 @@
                                 <div id="existing-product">
                                     <div class="form-group">
                                         <label id="kecamatan-label" for="product_name">Kecamatan</label>
-                                        <select class="form-control scrollable-menu" id="select-input-suara-tps-pilih-kecamatan" name="pilihKecamatan" onchange="pilihKecamatanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
+                                        <select class="form-control scrollable-menu" id="select-input-suara-pilih-kecamatan" name="pilihKecamatan" onchange="inputSuaraPilihKecamatanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih Kecamatan</option>
                                             <option value="2" data-price="{{price}}">Batam Kota</option>
                                             <option value="2" data-price="{{price}}">Bengkong</option>
@@ -320,7 +320,7 @@
                                 <div id="existing-product">
                                     <div class="form-group">
                                         <label id="kelurahan-label" for="product_name">Kelurahan</label>
-                                        <select class="form-control scrollable-menu" id="select-input-suara-tps-pilih-kelurahan" name="pilihKelurahan" onchange="pilihKelurahanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
+                                        <select class="form-control scrollable-menu" id="select-input-suara-pilih-kelurahan" name="pilihKelurahan" onchange="pilihKelurahanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih Kelurahan</option>
                                             <option value="2" data-price="{{price}}">Sadai</option>
                                             <option value="2" data-price="{{price}}">Bengkong Indah</option>
@@ -374,11 +374,12 @@
     
                     <!-- JavaScript Section -->
                     <script>
-                        // Pilih Jenis Input Suara Elements
+                        
                         const cardInputSuaraSuaraTps = document.getElementById("card-inputsuara-tps");
                         const cardPilihJenisInputSuara = document.getElementById("card-pilihjenis-inputsuara");
                         const buttonPilihJenisInputSuara = document.getElementById("submit-pilihjenis-inputsuara");
                         const loadingPilihJenisInputSuara = document.getElementById("loading-pilihjenis-inputsuara");
+                        // Pilih Jenis Input Suara Elements 
                         const pilihJenisInputSuara = document.getElementById("pilihjenis-inputsuara");
                         const rowInputSuaraPilihDapil = document.getElementById("row-input-suara-pilih-dapil");
                         const rowInputSuaraCalegPilihCaleg = document.getElementById("row-input-suara-caleg-pilih-caleg");
@@ -386,39 +387,51 @@
                         const rowInputSuaraPilihKelurahan = document.getElementById("row-input-suara-pilih-kelurahan");
                         const rowInputSuaraTpsPilihTps = document.getElementById("row-input-suara-tps-pilih-tps");
                         const selectInputSuaraPilihDapil = document.getElementById("select-input-suara-pilih-dapil");
+                        const selectInputSuaraPilihKecamatan = document.getElementById("select-input-suara-pilih-kecamatan");
+                        const selectInputSuaraPilihKelurahan = document.getElementById("select-input-suara-pilih-kelurahan")
                         const selectInputSuaraCalegPilihCaleg = document.getElementById("select-input-suara-caleg-pilih-caleg");
+                        const selectInputSuaraTpsPilihTps = document.getElementById("select-input-suara-tps-pilih-tps")
     
                         // Pilih Jenis Input Suara Event Handler
                         const pilihJenisInputSuaraEvent = () => {
                             rowInputSuaraPilihKecamatan.removeAttribute("hidden");
                             rowInputSuaraPilihKelurahan.removeAttribute("hidden");
-    
+
+                            selectInputSuaraPilihKecamatan.setAttribute("disabled", true);
+                            selectInputSuaraPilihKelurahan.setAttribute("disabled", true);
+                            selectInputSuaraTpsPilihTps.setAttribute("disabled", true);
+                            selectInputSuaraCalegPilihCaleg.setAttribute("disabled", true);
+
+                            selectInputSuaraPilihDapil.selectedIndex = 0;
+                            selectInputSuaraPilihKecamatan.selectedIndex = 0;
+                            selectInputSuaraPilihKelurahan.selectedIndex = 0;
+                            selectInputSuaraTpsPilihTps.selectedIndex = 0;
+                            selectInputSuaraCalegPilihCaleg.selectedIndex = 0;
                             if (pilihJenisInputSuara.selectedIndex === 2) {
                                 rowInputSuaraPilihDapil.removeAttribute("hidden");
                                 buttonPilihJenisInputSuara.setAttribute("disabled", true);
                                 rowInputSuaraCalegPilihCaleg.removeAttribute("hidden");
     
                                 rowInputSuaraTpsPilihTps.setAttribute("hidden", true);
-    
-                                selectInputSuaraPilihDapil.selectedIndex = 0;
                             } else if(pilihJenisInputSuara.selectedIndex === 1) {
                                 rowInputSuaraPilihDapil.removeAttribute("hidden");
                                 rowInputSuaraCalegPilihCaleg.setAttribute("hidden", true);
-                                rowInputSuaraTpsPilihTps.removeAttribute("hidden");
-    
-                                selectInputSuaraPilihDapil.selectedIndex = 0;
-                                selectInputSuaraCalegPilihCaleg.setAttribute("disabled", true);
-                                selectInputSuaraCalegPilihCaleg.selectedIndex = 0;
+                                rowInputSuaraTpsPilihTps.removeAttribute("hidden");                            
                             }
                         }
     
                         // Input Suara Pilih Dapil Event Handler
                         function inputSuaraPilihDapilEvent() {
-                            if (pilihJenisInputSuara.selectedIndex === 2 && selectInputSuaraPilihDapil !== 0 ) {
-                                selectInputSuaraCalegPilihCaleg.removeAttribute("disabled");
-                            } else if (pilihJenisInputSuara.selectedIndex === 1) {
-                                selectInputSuaraCalegPilihCaleg.setAttribute("disabled", true);
-                                selectInputSuaraCalegPilihCaleg.selectedIndex = 0;
+                            selectInputSuaraPilihKecamatan.removeAttribute("disabled");
+                            if (selectInputSuaraPilihDapil !== 0 ) {
+                                selectInputSuaraPilihKecamatan.removeAttribute("disabled");
+                            }
+                        }
+
+                        function inputSuaraPilihKecamatanEvent() {
+                            selectInputSuaraPilihKelurahan.removeAttribute("disabled");
+                            if (selectInputSuaraPilihKecamatan !== 0) {
+                                selectInputSuaraPilihKelurahan.removeAttribute("disabled");
                             }
                         }
     
@@ -449,7 +462,7 @@
                         });
     
                         // Input Suara Caleg Pilih Caleg Event Handler
-                        function inputSuaraCalegPilihCaleg() {
+                        function pilihInputSuaraCalegPilihCalegEvent() {
                             if (selectInputSuaraCalegPilihCaleg.selectedIndex !== 0) {
                                 buttonPilihJenisInputSuara.removeAttribute("disabled");
                             }
