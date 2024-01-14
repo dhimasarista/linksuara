@@ -5,6 +5,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/session"
 )
 
+// Setup All Routes
 func SetupRoutes(app *fiber.App, store *session.Store) {
 	AuthRoutes(app)
 	ErrorRoutes(app, store)
@@ -12,11 +13,4 @@ func SetupRoutes(app *fiber.App, store *session.Store) {
 	DashboardRoutes(app, store)
 	InputSuaraRoutes(app, store)
 	HitungSuaraRoutes(app, store)
-}
-
-func ResponseJSON(c *fiber.Ctx, msg string, status int) error {
-	return c.JSON(fiber.Map{
-		"message": msg,
-		"status":  status,
-	})
 }

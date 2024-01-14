@@ -15,25 +15,19 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 	var kelurahan = &models.Kelurahan{}
 
 	app.Get("/input-suara", func(c *fiber.Ctx) error {
-		var path = c.Path()
-		var username = handlers.GetSessionUsername(c, store)
-
+		var username = handlers.GetSessionUsername(c, store) // Init username from session
+		var path = c.Path()                                  // Getting Path of this routes
+		//
 		daftarDapil, err := dapil.FindAll()
 		if err != nil {
 			InternalServerError(c, err.Error())
 		}
-
-		daftarKelurahan, err := kelurahan.FindAll()
-		if err != nil {
-			InternalServerError(c, err.Error())
-		}
-
+		// Render mustache(HTML) file with the data
 		return c.Render("inputsuara_page", fiber.Map{
-			"path":      path,
-			"username":  username,
-			"dapil":     daftarDapil,
-			"kelurahan": daftarKelurahan,
-			"status":    fiber.StatusOK,
+			"path":     path,
+			"username": username,
+			"dapil":    daftarDapil,
+			"status":   fiber.StatusOK,
 		})
 	})
 
@@ -43,7 +37,7 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 
 		daftarKecamatan, err := kecamatan.FindKecamatanByDapil(idDpNumber)
 		if err != nil {
-			ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
+			handlers.ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
 		}
 
 		return c.JSON(fiber.Map{
@@ -58,7 +52,7 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 
 		daftarKelurahan, err := kelurahan.FindKelurahanByKecamatan(idKcNumber)
 		if err != nil {
-			ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
+			handlers.ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
 		}
 		return c.JSON(fiber.Map{
 			"kelurahan": daftarKelurahan,

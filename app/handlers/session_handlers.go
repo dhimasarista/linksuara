@@ -7,13 +7,13 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/session"
 )
 
+// Getting username from session
 func GetSessionUsername(c *fiber.Ctx, store *session.Store) string {
 	session, err := store.Get(c)
 	if err != nil {
 		log.Println(err)
 		return ""
 	}
-
 	username := session.Get("username")
 	// defer session.Save()
 

@@ -19,6 +19,7 @@ type DBConfig struct {
 	ParseTime bool
 }
 
+// Create domain name server for dbms
 func generateDSN(config DBConfig) string {
 	return fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=%t",
 		config.Username,
@@ -30,7 +31,7 @@ func generateDSN(config DBConfig) string {
 	)
 }
 
-// ReadDBConfig membaca konfigurasi database dari Viper
+// Reading dbms configuration using the viper
 func readDBConfig() DBConfig {
 	viper.SetConfigFile("./app/config/config.json")
 	if err := viper.ReadInConfig(); err != nil {
@@ -47,7 +48,7 @@ func readDBConfig() DBConfig {
 
 var dbConfig DBConfig = readDBConfig()
 
-// ConnectSQLDB membuat koneksi *sql.DB dan mengembalikannya
+// Create connection from sql-driver
 func ConnectSQLDB() *sql.DB {
 	dsn := generateDSN(dbConfig)
 	db, err := sql.Open("mysql", dsn)
@@ -58,7 +59,7 @@ func ConnectSQLDB() *sql.DB {
 	return db
 }
 
-// ConnectGormDB membuat koneksi *gorm.DB dan mengembalikkannya
+// Create dbms connection using Golang Object-Relational Mapping
 func ConnectGormDB() *gorm.DB {
 	db, err := gorm.Open(mysql.Open(generateDSN(dbConfig)), &gorm.Config{})
 	if err != nil {
