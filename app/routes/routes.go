@@ -7,11 +7,11 @@ import (
 
 func SetupRoutes(app *fiber.App, store *session.Store) {
 	AuthRoutes(app)
+	ErrorRoutes(app, store)
 	IndexRoutes(app, store)
 	DashboardRoutes(app, store)
 	InputSuaraRoutes(app, store)
 	HitungSuaraRoutes(app, store)
-	ErrorRoutes(app, store)
 }
 
 func ResponseJSON(c *fiber.Ctx, msg string, status int) error {

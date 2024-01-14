@@ -22,10 +22,6 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 		if err != nil {
 			InternalServerError(c, err.Error())
 		}
-		daftarKecamatan, err := kecamatan.FindAll()
-		if err != nil {
-			InternalServerError(c, err.Error())
-		}
 
 		daftarKelurahan, err := kelurahan.FindAll()
 		if err != nil {
@@ -36,7 +32,6 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 			"path":      path,
 			"username":  username,
 			"dapil":     daftarDapil,
-			"kecamatan": daftarKecamatan,
 			"kelurahan": daftarKelurahan,
 			"status":    fiber.StatusOK,
 		})
