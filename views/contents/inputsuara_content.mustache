@@ -183,11 +183,6 @@
                                         <label id="kecamatan-label" for="product_name">Kecamatan</label>
                                         <select class="form-control scrollable-menu" id="select-input-suara-pilih-kecamatan" name="pilihKecamatan" onchange="inputSuaraPilihKecamatanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih Kecamatan</option>
-                                            {{#kecamatan}}
-                                                <option value="{{id}}" data-dapil="{{dapil_id}}">{{nama}}</option>
-                                            {{/kecamatan}}
-                                            <!-- <option value="2" data-price="{{price}}">Batam Kota</option>
-                                            <option value="2" data-price="{{price}}">Bengkong</option> -->
                                         </select>
                                     </div>
                                 </div>
@@ -280,7 +275,7 @@
                         const pilihJenisInputSuaraEvent = () => {
                             rowInputSuaraPilihKecamatan.removeAttribute("hidden");
                             rowInputSuaraPilihKelurahan.removeAttribute("hidden");
-
+                            // Ketika fungsi dipanggil row-selected dibawah dapil menjadi index 0 dan disabled
                             selectInputSuaraPilihKecamatan.setAttribute("disabled", true);
                             selectInputSuaraPilihKelurahan.setAttribute("disabled", true);
                             selectInputSuaraTpsPilihTps.setAttribute("disabled", true);
@@ -306,6 +301,18 @@
     
                         // Input Suara Pilih Dapil Event Handler
                         function inputSuaraPilihDapilEvent() {
+                            // Menghapus Select Option sebelum mengambil data
+                            while (selectInputSuaraPilihKecamatan.options.length > 1) {
+                                selectInputSuaraPilihKecamatan.remove(1);
+                            }
+                            // Default select option == 0
+                            selectInputSuaraPilihKecamatan.selectedIndex = 0;
+                            selectInputSuaraPilihKelurahan.selectedIndex = 0;
+                            selectInputSuaraTpsPilihTps.selectedIndex = 0;
+                            selectInputSuaraCalegPilihCaleg.selectedIndex = 0;
+                            // Ketika fungsi dipanggil semua row-select option dibawah kecamatan menjadi index 0 dan disabled
+                            selectInputSuaraPilihKelurahan.setAttribute("disabled", true);
+                            selectInputSuaraTpsPilihTps.setAttribute("disabled", true);
                             const idDp = selectInputSuaraPilihDapil.value;
                             fetch(`/input-suara/kecamatan/${idDp}`, {
                                 headers: {
@@ -314,7 +321,12 @@
                             })
                             .then(response => response.json())
                             .then(results => {
-                                console.log(results);
+                                results["kecamatan"].forEach(kecamatan => {
+                                    const option = document.createElement("option");
+                                    option.value = kecamatan.id; // Sesuaikan dengan properti id kecamatan
+                                    option.textContent = kecamatan.nama; // Sesuaikan dengan properti nama kecamatan
+                                    selectInputSuaraPilihKecamatan.appendChild(option);
+                                });
                             })
                             .catch(error => {
                                 console.error("Error fetching data:", error);
