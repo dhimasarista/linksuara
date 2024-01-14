@@ -8,6 +8,10 @@ INSERT INTO dapil VALUES(4, "sagulung", NOW(), NOW(), NULL);
 INSERT INTO dapil VALUES(5, "batu aji", NOW(), NOW(), NULL);
 INSERT INTO dapil VALUES(6, "sekupang - belakang padang", NOW(), NOW(), NULL);
 
+
+INSERT INTO caleg (id, nama, dapil_id, created_at, updated_at, deleted_at) VALUES
+(11, "putra yustisty respaty", 1, NOW(), NOW(), NULL),
+
 -- Perintah INSERT untuk tabel kecamatan
 INSERT INTO kecamatan VALUES(11, "batam kota", 1, NOW(), NOW(), NULL);
 INSERT INTO kecamatan VALUES(12, "lubuk baja", 1, NOW(), NOW(), NULL);
