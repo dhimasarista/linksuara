@@ -13,6 +13,7 @@ func DashboardRoutes(app *fiber.App, store *session.Store) {
 	dapil := &models.Dapil{}
 	kecamatan := &models.Kecamatan{}
 	kelurahan := &models.Kelurahan{}
+	tps := &models.TPS{}
 	app.Get("/dashboard", func(c *fiber.Ctx) error {
 		var username = handlers.GetSessionUsername(c, store)
 		var path = c.Path()
@@ -32,6 +33,11 @@ func DashboardRoutes(app *fiber.App, store *session.Store) {
 			log.Println(err)
 			return InternalServerError(c, err.Error())
 		}
+		totalTPS, err := tps.TotalTPS()
+		if err != nil {
+			log.Println(err)
+			return InternalServerError(c, err.Error())
+		}
 
 		return c.Render("dashboard_page", fiber.Map{
 			"username":        username,
@@ -39,6 +45,7 @@ func DashboardRoutes(app *fiber.App, store *session.Store) {
 			"total_dapil":     totalDapil,
 			"total_kecamatan": totalKecamatan,
 			"total_kelurahan": totalKelurahan,
+			"total_tps":       totalTPS,
 			"status":          fiber.StatusOK,
 		})
 	})
