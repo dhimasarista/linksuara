@@ -197,9 +197,6 @@
                                         <label id="kelurahan-label" for="product_name">Kelurahan</label>
                                         <select class="form-control scrollable-menu" id="select-input-suara-pilih-kelurahan" name="pilihKelurahan" onchange="inputSuaraPilihKelurahanEvent()" disabled onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih Kelurahan</option>
-                                            {{#kelurahan}}
-                                            <option value="{{id}}" data-kecamatan="{{kelurahan_id}}">{{nama}}</option>
-                                            {{/kelurahan}}
                                         </select>
                                     </div>
                                 </div>
@@ -313,19 +310,20 @@
                             // Ketika fungsi dipanggil semua row-select option dibawah kecamatan menjadi index 0 dan disabled
                             selectInputSuaraPilihKelurahan.setAttribute("disabled", true);
                             selectInputSuaraTpsPilihTps.setAttribute("disabled", true);
+                            selectInputSuaraCalegPilihCaleg.setAttribute("disabled", true);
                             const idDp = selectInputSuaraPilihDapil.value;
 
                             // Loading Swal
-                            Swal.fire({
-                                title: 'Loading!',
-                                html: 'Please wait...',
-                                icon: 'info',
-                                allowOutsideClick: false,
-                                showConfirmButton: false,
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                }
-                            });
+                            // Swal.fire({
+                            //     title: 'Loading!',
+                            //     html: 'Please wait...',
+                            //     icon: 'info',
+                            //     allowOutsideClick: false,
+                            //     showConfirmButton: false,
+                            //     didOpen: () => {
+                            //         Swal.showLoading();
+                            //     }
+                            // });
                             fetch(`/input-suara/kecamatan/${idDp}`, {
                                 headers: {
                                     "Content-Type": "application/json"
@@ -346,9 +344,9 @@
                                     option.textContent = kecamatan.nama; // Sesuaikan dengan properti nama kecamatan
                                     selectInputSuaraPilihKecamatan.appendChild(option);
                                 });
-                                setTimeout(() => {
-                                    Swal.close();
-                                }, 1000);
+                                // setTimeout(() => {
+                                //     Swal.close();
+                                // }, 500);
                             })
                             .catch(error => {
                                 console.error("Error fetching data:", error);
@@ -362,11 +360,19 @@
                         }
 
                         function inputSuaraPilihKecamatanEvent() {
-                            const idKc = selectInputSuaraPilihKecamatan.value;
-                            selectInputSuaraPilihKelurahan.removeAttribute("disabled");
-                            if (selectInputSuaraPilihKecamatan !== 0) {
-                                selectInputSuaraPilihKelurahan.removeAttribute("disabled");
+                             // Menghapus Select Option sebelum mengambil data
+                             while (selectInputSuaraPilihKelurahan.options.length > 1) {
+                                selectInputSuaraPilihKelurahan.remove(1);
                             }
+                            // Default select option == 0
+                            selectInputSuaraPilihKelurahan.selectedIndex = 0;
+                            selectInputSuaraTpsPilihTps.selectedIndex = 0;
+                            selectInputSuaraCalegPilihCaleg.selectedIndex = 0;
+                            // Ketika fungsi dipanggil semua row-select option dibawah kelurahan menjadi index 0 dan disabled
+                            selectInputSuaraTpsPilihTps.setAttribute("disabled", true);
+                            selectInputSuaraCalegPilihCaleg.setAttribute("disabled", true);
+
+                            const idKc = selectInputSuaraPilihKecamatan.value;
                             fetch(`/input-suara/kelurahan/${idKc}`, {
                                 headers: {
                                     "Content-Type": "application/json"
@@ -375,7 +381,22 @@
                             .then(response => response.json())
                             .then(results => {
                                 console.log(results);
+                                results["kelurahan"].forEach(kelurahan => {
+                                    const option = document.createElement("option");
+                                    option.value = kelurahan.id; // Sesuaikan dengan properti id kelurahan
+                                    option.textContent = kelurahan.nama; // Sesuaikan dengan properti nama kecamatan
+                                    selectInputSuaraPilihKelurahan.appendChild(option);
+                                });
                             })
+                            .catch(error => {
+                                console.error(error);
+                                ErrorNotif(error)
+                            })
+
+                            selectInputSuaraPilihKelurahan.removeAttribute("disabled");
+                            if (selectInputSuaraPilihKecamatan !== 0) {
+                                selectInputSuaraPilihKelurahan.removeAttribute("disabled");
+                            }
                         }
 
                         function inputSuaraPilihKelurahanEvent() {
