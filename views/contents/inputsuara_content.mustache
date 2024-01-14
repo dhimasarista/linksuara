@@ -5,6 +5,21 @@
         <!-- <div id="add-stocks-button" hidden><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i>New Order</i></a></div> -->
         <div id="button-return-input-suara" hidden><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i>Kembali</i></a></div>
     </div>
+    <!-- Card Loading -->
+    <div class="card shadow mb-4" id="card-spinners">
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Loading...</h6>
+            </div>
+            <div class="card-body text-center">
+                <div class="spinner-border text-primary m-5" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div id="message-loading-card"></div>
+                <br>
+            </div>
+        </div>
+    </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4" id="card-input-suara-tps" hidden>
         <div class="card">
@@ -120,7 +135,7 @@
             </div>
         </div>
     </div> 
-    <div class="card shadow mb-4" id="card-pilihjenis-inputsuara">
+    <div class="card shadow mb-4" id="card-pilihjenis-inputsuara" hidden>
         <div class="card">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Jenis Input Suara</h6>
@@ -291,6 +306,20 @@
     
                         // Input Suara Pilih Dapil Event Handler
                         function inputSuaraPilihDapilEvent() {
+                            const idDp = selectInputSuaraPilihDapil.value;
+                            fetch(`/input-suara/kecamatan/${idDp}`, {
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                            })
+                            .then(response => response.json())
+                            .then(results => {
+                                console.log(results);
+                            })
+                            .catch(error => {
+                                console.error("Error fetching data:", error);
+                                // Handle error if needed
+                            });
                             selectInputSuaraPilihKecamatan.removeAttribute("disabled");
                             if (selectInputSuaraPilihDapil !== 0 ) {
                                 selectInputSuaraPilihKecamatan.removeAttribute("disabled");
@@ -298,10 +327,20 @@
                         }
 
                         function inputSuaraPilihKecamatanEvent() {
+                            const idKc = selectInputSuaraPilihKecamatan.value;
                             selectInputSuaraPilihKelurahan.removeAttribute("disabled");
                             if (selectInputSuaraPilihKecamatan !== 0) {
                                 selectInputSuaraPilihKelurahan.removeAttribute("disabled");
                             }
+                            fetch(`/input-suara/kelurahan/${idKc}`, {
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                            })
+                            .then(response => response.json())
+                            .then(results => {
+                                console.log(results);
+                            })
                         }
 
                         function inputSuaraPilihKelurahanEvent() {
@@ -360,6 +399,14 @@
     
 </div>
 <script>
+    var status = "{{status}}"
+    const loadingCard = document.getElementById("card-spinners")
+    document.addEventListener('DOMContentLoaded', function() {
+        if (status === "200") {
+            loadingCard.setAttribute("hidden", true);
+            cardPilihJenisInputSuara.removeAttribute("hidden");
+        }
+    });
     document.addEventListener('DOMContentLoaded', function() {
         const orderGoingTable = $('#tabel-inputsuara-pertps').DataTable({
             "order": [[0, 'asc']] // Mengurutkan berdasarkan kolom pertama secara menaik

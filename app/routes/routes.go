@@ -13,3 +13,10 @@ func SetupRoutes(app *fiber.App, store *session.Store) {
 	HitungSuaraRoutes(app, store)
 	ErrorRoutes(app, store)
 }
+
+func ResponseJSON(c *fiber.Ctx, msg string, status int) error {
+	return c.JSON(fiber.Map{
+		"message": msg,
+		"status":  status,
+	})
+}

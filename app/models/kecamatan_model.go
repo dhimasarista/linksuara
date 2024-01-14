@@ -81,3 +81,50 @@ func (kc *Kecamatan) FindAll() ([]map[string]any, error) {
 
 	return daftarKecamatan, nil
 }
+
+func (kc *Kecamatan) FindKecamatanByDapil(dp int) ([]map[string]any, error) {
+	db := config.ConnectGormDB()
+	var query string = `
+		SELECT
+			kc.id,
+			kc.nama AS nama_kecamatan,
+			kc.dapil_id,
+			dp.nama AS nama_dapil
+		FROM
+			kecamatan kc
+		JOIN
+			dapil dp ON kc.dapil_id = dp.id
+		WHERE 
+			kc.dapil_id = ? AND kc.deleted_at IS NULL;
+	`
+	var daftarKecamatan []map[string]any
+
+	rows, err := db.Raw(query, dp).Rows()
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		err := rows.Scan(
+			&kc.ID,
+			&kc.Nama,
+			&kc.DapilID,
+			&kc.Dapil.Nama,
+		)
+
+		if err != nil {
+			return nil, err
+		}
+
+		var kecamatan = map[string]any{
+			"id":         kc.ID.Int64,
+			"nama":       utility.Capitalize(kc.Nama.String),
+			"dapil_id":   kc.DapilID.Int64,
+			"nama_dapil": kc.Dapil.Nama.String,
+		}
+
+		daftarKecamatan = append(daftarKecamatan, kecamatan)
+	}
+
+	return daftarKecamatan, nil
+}

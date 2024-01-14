@@ -40,13 +40,13 @@ func (d *Dapil) FindAll() ([]map[string]any, error) {
 		if err != nil {
 			return nil, err
 		}
-		idString := string(rune(d.ID.Int64))
-		hashedId, err := utility.GenerateHash(idString)
-		if err != nil {
-			return nil, err
-		}
+		// idString := string(rune(d.ID.Int64))
+		// hashedId, err := utility.GenerateHash(idString)
+		// if err != nil {
+		// 	return nil, err
+		// }
 		dapil := map[string]any{
-			"id":          hashedId,
+			"id":          d.ID.Int64,
 			"nama":        utility.Capitalize(d.Nama.String),
 			"nomor_dapil": d.ID.Int64,
 		}
