@@ -8,7 +8,7 @@
 
 ### Spesifikasi Teknologi
 
-Aplikasi Manajemen Logistik dan Supply Chain ini dibangun menggunakan berbagai teknologi terkini untuk memastikan kinerja yang optimal dan keamanan data. Berikut adalah daftar teknologi yang digunakan:
+Aplikasi Input & Hitung suara ini dibangun menggunakan teknologi terkini untuk memastikan kinerja yang optimal dan keamanan data. Berikut adalah daftar teknologi yang digunakan:
 
 1. **Golang:**
    - Bahasa pemrograman utama yang digunakan untuk pengembangan aplikasi. Golang, atau Go, dipilih karena kecepatan eksekusi tinggi, efisiensi penggunaan sumber daya, dan dukungan pengembangan yang baik.
