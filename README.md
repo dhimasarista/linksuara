@@ -1,4 +1,4 @@
-# LINKSUARA - Sistem Infromasi Suara
+# LINKSUARA - Aplikasi Manajemen Input & Hitung Suara
 
 ## Coding Convention
 - PascalCase: Struct/Class, Interface, Method/Public-Function
