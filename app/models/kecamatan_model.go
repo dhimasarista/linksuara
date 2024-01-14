@@ -56,6 +56,7 @@ func (kc *Kecamatan) FindAll() ([]map[string]any, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -103,7 +104,7 @@ func (kc *Kecamatan) FindKecamatanByDapil(dp int) ([]map[string]any, error) {
 	if err != nil {
 		return nil, err
 	}
-
+	defer rows.Close()
 	for rows.Next() {
 		err := rows.Scan(
 			&kc.ID,

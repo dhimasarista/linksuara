@@ -86,6 +86,7 @@ func (kl *Kelurahan) FindKelurahanByKecamatan(kc int) ([]map[string]any, error) 
 	if err != nil {
 		return nil, err
 	}
+	defer rows.Close()
 	var daftarKelurahan []map[string]any
 	for rows.Next() {
 		err = rows.Scan(
