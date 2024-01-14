@@ -116,4 +116,6 @@ INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
 (621, "Kasu", NOW(), NOW(), 62),
 (622, "Pecong", NOW(), NOW(), 62),
 (623, "Pemping", NOW(), NOW(), 62),
-(624, "Pulau Terong", NOW(), NOW(), 62);
+(624, "Pulau Terong", NOW(), NOW(), 62),
+(625, "Sekanak Raya",  NOW(), NOW(), 62),
+(626, "Tanjung Sari",  NOW(), NOW(), 62);
