@@ -128,3 +128,16 @@ func (kc *Kecamatan) FindKecamatanByDapil(dp int) ([]map[string]any, error) {
 
 	return daftarKecamatan, nil
 }
+
+func (kc *Kecamatan) TotalKecamatan() (int, error) {
+	db := config.ConnectGormDB()
+	var query string = "SELECT COUNT(*) AS total FROM kecamatan WHERE deleted_at IS NULL;"
+
+	var total int // Variabel menampung jumlah dapil
+	results := db.Raw(query).Scan(&total)
+	if results.Error != nil {
+		return -1, results.Error
+	}
+
+	return total, nil
+}
