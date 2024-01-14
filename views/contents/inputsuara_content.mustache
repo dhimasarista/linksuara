@@ -380,7 +380,6 @@
                             })
                             .then(response => response.json())
                             .then(results => {
-                                console.log(results);
                                 results["kelurahan"].forEach(kelurahan => {
                                     const option = document.createElement("option");
                                     option.value = kelurahan.id; // Sesuaikan dengan properti id kelurahan
