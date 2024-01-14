@@ -3,6 +3,7 @@ package models
 import (
 	"database/sql"
 	"linksuara/app/config"
+	"linksuara/app/utility"
 	"time"
 
 	"gorm.io/gorm"
@@ -22,14 +23,61 @@ type Kecamatan struct {
 	DeletedAt gorm.DeletedAt `gorm:"column:deleted_at" json:"deleted_at"`
 }
 
-func (k *Kecamatan) GetByID(id int) error {
+func (kc *Kecamatan) GetByID(id int) error {
 	db := config.ConnectGormDB()
 
 	query := "SELECT * FROM kecamatan WHERE id = ?;"
-	results := db.Raw(query, id).Scan(&k)
+	results := db.Raw(query, id).Scan(&kc)
 	if results.Error != nil {
 		return results.Error
 	}
 
 	return nil
+}
+
+func (kc *Kecamatan) FindAll() ([]map[string]any, error) {
+	db := config.ConnectGormDB()
+	var query string = `
+		SELECT
+			kc.id,
+			kc.nama AS nama_kecamatan,
+			kc.dapil_id,
+			dp.nama AS nama_dapil
+		FROM
+			kecamatan kc
+		JOIN
+			dapil dp ON kc.dapil_id = dp.id
+		WHERE 
+			kc.id > 1 AND kc.deleted_at IS NULL;
+	`
+	var daftarKecamatan []map[string]any
+
+	rows, err := db.Raw(query).Rows()
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		err := rows.Scan(
+			&kc.ID,
+			&kc.Nama,
+			&kc.DapilID,
+			&kc.Dapil.Nama,
+		)
+
+		if err != nil {
+			return nil, err
+		}
+
+		var kecamatan = map[string]any{
+			"id":         kc.ID.Int64,
+			"nama":       utility.Capitalize(kc.Nama.String),
+			"dapil_id":   kc.DapilID.Int64,
+			"nama_dapil": kc.Dapil.Nama.String,
+		}
+
+		daftarKecamatan = append(daftarKecamatan, kecamatan)
+	}
+
+	return daftarKecamatan, nil
 }
