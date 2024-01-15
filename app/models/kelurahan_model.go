@@ -23,6 +23,16 @@ type Kelurahan struct {
 	DeletedAt gorm.DeletedAt `gorm:"column:deleted_at" json:"deleted_at"`
 }
 
+func (kl *Kelurahan) GetByID(id int) error {
+	db := config.ConnectGormDB()
+	const query string = "SELECT * FROM kelurahan WHERE id = ? AND deleted_at IS NULL;"
+	results := db.Raw(query, id).Scan(&kl)
+	if results.Error != nil {
+		return results.Error
+	}
+	return nil
+}
+
 func (kl *Kelurahan) FindAll() ([]map[string]any, error) {
 	db := config.ConnectGormDB()
 	var query string = `

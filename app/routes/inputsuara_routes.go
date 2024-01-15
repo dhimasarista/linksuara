@@ -83,9 +83,17 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 		if err != nil {
 			return handlers.ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
 		}
+		err = kelurahan.GetByID(idKlNumber)
+		if err != nil {
+			return handlers.ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
+		}
+		dataKelurahan := map[string]any{
+			"nama": kelurahan.Nama.String,
+		}
 		return c.JSON(fiber.Map{
-			"tps":    daftarTps,
-			"status": fiber.StatusOK,
+			"tps":       daftarTps,
+			"kelurahan": dataKelurahan,
+			"status":    fiber.StatusOK,
 		})
 	})
 	// Get data of caleg
@@ -119,9 +127,8 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 		if err != nil {
 			return handlers.ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
 		}
-
 		return c.JSON(fiber.Map{
-			"data":   dataTps,
+			"tps":    dataTps,
 			"status": fiber.StatusOK,
 		})
 	})

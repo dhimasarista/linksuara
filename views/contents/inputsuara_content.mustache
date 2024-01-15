@@ -439,7 +439,7 @@
                                     if (results.status !== 200) {
                                         InternalServerError(results.message)
                                     }
-                                    headerInputSuaraTps.innerText = `${results.data[0]["nama_kecamatan"]} - ${results.data[0]["nama_kelurahan"]} - ${results.data[0]["nama_tps"]}`
+                                    headerInputSuaraTps.innerText = `${results.tps[0]["nama_kecamatan"]} - ${results.tps[0]["nama_kelurahan"]} - ${results.tps[0]["nama_tps"]}`
                                 })
                                 .catch(error => {
                                     ErrorNotif(error);
@@ -461,6 +461,8 @@
                                     "order": [[0, 'asc']] // Mengurutkan berdasarkan kolom pertama secara menaik
                                 });
                                 const idCaleg = selectInputSuaraCalegPilihCaleg.value;
+                                let namaCaleg;
+                                let namaKelurahan;
                                 fetch(`/input-suara/caleg/${idCaleg}`, {
                                     headers: {
                                         "Content-Type": "application/json"
@@ -473,7 +475,7 @@
                                         InternalServerError("Data TPS belum tersedia");
                                         return 0;
                                     }
-                                    headerInputSuaraCaleg.innerText = `${results.caleg["nama"]}`
+                                    namaCaleg = results.caleg["nama"]
                                 });
 
                                 fetch(`/pilih/tps/${selectInputSuaraPilihKelurahan.value}`, {
@@ -500,6 +502,8 @@
                                             `<button class="btn btn-primary submit-inputsuara">Update</button>`
                                         ]).draw();
                                     });
+                                    namaKelurahan = results.kelurahan["nama"];
+                                    headerInputSuaraCaleg.innerText = `${namaCaleg} - ${namaKelurahan}`
                                     // Menampilkan Page Input Suara Caleg
                                     loadingPilihJenisInputSuara.classList.remove("spinner-border");
                                     loadingPilihJenisInputSuara.innerText = "Submit";
