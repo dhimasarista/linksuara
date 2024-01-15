@@ -13,7 +13,7 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 	var dapil = &models.Dapil{}
 	var kecamatan = &models.Kecamatan{}
 	var kelurahan = &models.Kelurahan{}
-
+	var tps = &models.TPS{}
 	app.Get("/input-suara", func(c *fiber.Ctx) error {
 		var username = handlers.GetSessionUsername(c, store) // Init username from session
 		var path = c.Path()                                  // Getting Path of this routes
@@ -57,6 +57,21 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 		return c.JSON(fiber.Map{
 			"kelurahan": daftarKelurahan,
 			"status":    fiber.StatusOK,
+		})
+	})
+
+	app.Get("/input-suara/tps/:id", func(c *fiber.Ctx) error {
+		var idKl = c.Params("id")
+		idKlNumber, _ := strconv.Atoi(idKl)
+
+		daftarTps, err := tps.FindTpsByKelurahan(idKlNumber)
+		if err != nil {
+			handlers.ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
+		}
+
+		return c.JSON(fiber.Map{
+			"tps":    daftarTps,
+			"status": fiber.StatusOK,
 		})
 	})
 }
