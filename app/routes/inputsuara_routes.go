@@ -91,6 +91,25 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 		})
 	})
 
+	app.Get("/input-suara/caleg/:id", func(c *fiber.Ctx) error {
+		var idCaleg = c.Params("id")
+		idCalegNumber, _ := strconv.Atoi(idCaleg)
+
+		err := caleg.GetByID(idCalegNumber)
+		if err != nil {
+			return handlers.ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
+		}
+		dataCaleg := map[string]any{
+			"id":         caleg.ID.Int64,
+			"nama":       caleg.Nama.String,
+			"dapil_id":   caleg.DapilID.Int64,
+			"nama_dapil": caleg.Dapil.Nama.String,
+		}
+		return c.JSON(fiber.Map{
+			"caleg":  dataCaleg,
+			"status": fiber.StatusOK,
+		})
+	})
 	app.Get("/input-suara/tps/:id", func(c *fiber.Ctx) error {
 		var idKl = c.Params("id")
 		idKlNumber, _ := strconv.Atoi(idKl)
