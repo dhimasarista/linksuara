@@ -93,7 +93,7 @@
    <div class="card shadow mb-4" id="card-input-suara-caleg" hidden>
         <div class="card">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Nama Calegnya</h6>
+                <h6 class="m-0 font-weight-bold text-primary" id="header-input-suara-caleg"></h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -382,6 +382,9 @@
                             while (selectInputSuaraTpsPilihTps.options.length > 1) {
                                 selectInputSuaraTpsPilihTps.remove(1);
                             }
+                            while (selectInputSuaraCalegPilihCaleg.options.length > 1) {
+                                selectInputSuaraCalegPilihCaleg.remove(1);
+                            }
                             // Default select option == 0
                             selectInputSuaraTpsPilihTps.selectedIndex = 0;
                             selectInputSuaraCalegPilihCaleg.selectedIndex = 0;
@@ -416,7 +419,7 @@
                                     ErrorNotif(error);
                                 });
                                 return 0;
-                            } else {
+                            } else if (!rowInputSuaraCalegPilihCaleg.hidden) {
                                 const idDapil = selectInputSuaraPilihDapil.value;
                                 fetch(`/pilih/caleg/${idDapil}`, {
                                     headers: {
@@ -476,6 +479,19 @@
                                     buttonReturnInputSuara.removeAttribute("hidden")
                                 }, 1000);
                             } else if (pilihJenisInputSuara.selectedIndex === 2) {
+                                const headerInputSuaraCaleg = document.getElementById("header-input-suara-caleg");
+                                headerInputSuaraCaleg.innerText = null;
+                                const idCaleg = selectInputSuaraCalegPilihCaleg.value;
+                                fetch(`/input-suara/caleg/${idCaleg}`, {
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                })
+                                .then(response =>  response.json())
+                                .then(results => {
+                                    console.log(results);
+                                    headerInputSuaraCaleg.innerText = `${results.caleg["nama"]}`
+                                })
                                 setTimeout(() => {
                                     loadingPilihJenisInputSuara.classList.remove("spinner-border");
                                     loadingPilihJenisInputSuara.innerText = "Submit";
