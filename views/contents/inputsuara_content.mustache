@@ -24,8 +24,7 @@
     <div class="card shadow mb-4" id="card-input-suara-tps" hidden>
         <div class="card">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">BATAM KOTA - BELIAN - TPS 22</h6>
-                
+                <h6 class="m-0 font-weight-bold text-primary" id="header-input-suara-tps"></h6>
             </div>
             <div class="card-body">
                 <div class="tab-content">
@@ -225,8 +224,6 @@
                                         <label id="pilih-caleg-label" for="pilih-caleg">Calon Legislatif</label>
                                         <select class="form-control scrollable-menu" id="select-input-suara-caleg-pilih-caleg" name="pilihCaleg" disabled onchange="pilihInputSuaraCalegPilihCalegEvent()" onfocus="this.size=1;" onchange='this.size=1;'>
                                             <option value="" selected disabled>Pilih Caleg</option>
-                                            <option value="1">Anto Selang</option>
-                                            <option value="2">Ujang Solar</option>
                                         </select>
                                     </div>
                                 </div>
@@ -311,7 +308,7 @@
                             selectInputSuaraCalegPilihCaleg.setAttribute("disabled", true);
                             const idDp = selectInputSuaraPilihDapil.value;
 
-                            fetch(`/input-suara/kecamatan/${idDp}`, {
+                            fetch(`/pilih/kecamatan/${idDp}`, {
                                 headers: {
                                     "Content-Type": "application/json"
                                 },
@@ -322,7 +319,7 @@
                             .then(results => {
                                 if (results.status !== 200) {
                                     Swal.close();
-                                    InternalServerError(results.message);
+                                    InternalServerError(results.messageresults.message);
                                     return 0;
                                 }
                                 results["kecamatan"].forEach(kecamatan => {
@@ -356,7 +353,7 @@
                             selectInputSuaraCalegPilihCaleg.setAttribute("disabled", true);
 
                             const idKc = selectInputSuaraPilihKecamatan.value;
-                            fetch(`/input-suara/kelurahan/${idKc}`, {
+                            fetch(`/pilih/kelurahan/${idKc}`, {
                                 headers: {
                                     "Content-Type": "application/json"
                                 },
@@ -394,25 +391,53 @@
                             } else if (pilihJenisInputSuara.selectedIndex === 2) {
                                 selectInputSuaraCalegPilihCaleg.removeAttribute("disabled");
                             }
-                            const idKelurahan = selectInputSuaraPilihKelurahan.value;
-                            fetch(`/input-suara/tps/${idKelurahan}`, {
-                                headers: {
-                                    "Content-Type": "application/json"
-                                },
-                            })
-                            .then(response => response.json())
-                            .then(results => {
-                                console.log(results);
-                                results["tps"].forEach(tps => {
-                                    const option = document.createElement("option");
-                                    option.value = tps.id; // Sesuaikan dengan properti id tps
-                                    option.textContent = tps.nama; // Sesuaikan dengan properti nama kecamatan
-                                    selectInputSuaraTpsPilihTps.appendChild(option);
+
+                            if (!rowInputSuaraTpsPilihTps.hidden) {
+                                const idKelurahan = selectInputSuaraPilihKelurahan.value;
+                                fetch(`/pilih/tps/${idKelurahan}`, {
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                })
+                                .then(response => response.json())
+                                .then(results => {
+                                    if (results["tps"] === null && rowInputSuaraCalegPilihCaleg.hidden) {
+                                        InternalServerError("Data TPS belum tersedia")
+                                        return 0;
+                                    }
+                                    results["tps"].forEach(tps => {
+                                        const option = document.createElement("option");
+                                        option.value = tps.id; // Sesuaikan dengan properti id tps
+                                        option.textContent = tps.nama; // Sesuaikan dengan properti nama kecamatan
+                                        selectInputSuaraTpsPilihTps.appendChild(option);
+                                    });
+                                })
+                                .catch(error => {
+                                    ErrorNotif(error);
                                 });
-                            })
-                            .catch(error => {
-                                ErrorNotif(error);
-                            })
+                                return 0;
+                            } else {
+                                const idDapil = selectInputSuaraPilihDapil.value;
+                                fetch(`/pilih/caleg/${idDapil}`, {
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                })
+                                .then(response =>  response.json())
+                                .then(results => {
+                                    if (results["caleg"] === null && rowInputSuaraTpsPilihTps.hidden) {
+                                        InternalServerError("Data Caleg belum tersedia")
+                                        return 0;
+                                    }
+                                    results["caleg"].forEach(caleg => {
+                                        const option = document.createElement("option");
+                                        option.value = caleg.id; // Sesuaikan dengan properti id caleg
+                                        option.textContent = caleg.nama; // Sesuaikan dengan properti nama kecamatan
+                                        selectInputSuaraCalegPilihCaleg.appendChild(option);
+                                    });
+                                })
+                                return 0;
+                            }
                         }
     
                         // Button Pilih Jenis Input Suara Click Event Handler
@@ -421,8 +446,27 @@
     
                             loadingPilihJenisInputSuara.innerText = "";
                             loadingPilihJenisInputSuara.classList.add("spinner-border");
-                            
+
+                            const headerInputSuaraTps = document.getElementById("header-input-suara-tps");
+                            headerInputSuaraTps.innerText = null;
                             if (pilihJenisInputSuara.selectedIndex === 1) {
+                                const idTps = selectInputSuaraTpsPilihTps.value;
+                                fetch(`/input-suara/tps/${idTps}`, {
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                })
+                                .then(response => response.json())
+                                .then(results => {
+                                    console.log(results);
+                                    if (results.status !== 200) {
+                                        InternalServerError(results.message)
+                                    }
+                                    headerInputSuaraTps.innerText = `${results.data[0]["nama_kecamatan"]} - ${results.data[0]["nama_kelurahan"]} - ${results.data[0]["nama_tps"]}`
+                                })
+                                .catch(error => {
+                                    ErrorNotif(error);
+                                })
                                 setTimeout(() => {
                                     loadingPilihJenisInputSuara.classList.remove("spinner-border");
                                     loadingPilihJenisInputSuara.innerText = "Submit";
