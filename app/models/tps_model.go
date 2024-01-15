@@ -74,6 +74,59 @@ func (tps *TPS) FindTpsByKelurahan(kelurahanId int) ([]map[string]any, error) {
 	return daftarTps, nil
 }
 
+func (tps *TPS) GetByID(idKl int) ([]map[string]any, error) {
+	db := config.ConnectGormDB()
+	var dataTps []map[string]any
+	const query string = `
+		SELECT 
+			tps.id AS tps_id,
+			tps.nama AS tps_nama,
+			kelurahan.id AS kelurahan_id,
+			kelurahan.nama AS kelurahan_nama,
+			kecamatan.id AS kecamatan_id,
+			kecamatan.nama AS kecamatan_nama
+		FROM
+			tps
+		JOIN kelurahan ON tps.kelurahan_id = kelurahan.id
+		JOIN kecamatan ON kelurahan.kecamatan_id = kecamatan.id
+		WHERE tps.id = ? AND tps.deleted_at IS NULL;
+	`
+	rows, err := db.Raw(query, idKl).Rows()
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var kecamatan string
+		var kecamatanID int
+		err = rows.Scan(
+			&tps.ID,
+			&tps.Nama,
+			&tps.KelurahanID,
+			&tps.Kelurahan.Nama,
+			&kecamatanID,
+			&kecamatan,
+		)
+		if err != nil {
+			return nil, err
+		}
+
+		var tps = map[string]any{
+			"tps_id":         tps.ID.Int64,
+			"nama_tps":       utility.CapitalizeAll(tps.Nama.String),
+			"kelurahan_id":   tps.KelurahanID.Int64,
+			"nama_kelurahan": utility.Capitalize(tps.Kelurahan.Nama.String),
+			"kecamatan_id":   kecamatanID,
+			"nama_kecamatan": utility.Capitalize(kecamatan),
+		}
+
+		dataTps = append(dataTps, tps)
+	}
+
+	return dataTps, nil
+}
+
 func (tps *TPS) TotalTPS() (int, error) {
 	db := config.ConnectGormDB()
 	var query string = "SELECT COUNT(*) AS total FROM tps WHERE deleted_at IS NULL;"
