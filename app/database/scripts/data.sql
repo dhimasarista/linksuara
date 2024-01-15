@@ -123,3 +123,71 @@ INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
 (624, "Pulau Terong", NOW(), NOW(), 62),
 (625, "Sekanak Raya",  NOW(), NOW(), 62),
 (626, "Tanjung Sari",  NOW(), NOW(), 62);
+
+-- Caleg Dapil 1
+INSERT INTO caleg(id, nama, dapil_id, created_at, updated_at, deleted_at) VALUES
+(101, "PUTRA YUSTISI RESPATY, S.H.", 1, NOW(), NOW(), NULL),
+(102, "THOMAS ARIHTA SEMBIRING, S.Sos.", 1, NOW(), NOW(), NULL),
+(103, "SARTI RISWATI PONGSITANAN, S.E.", 1, NOW(), NOW(), NULL),
+(104, "MARISI PANE, S.T.", 1, NOW(), NOW(), NULL),
+(105, "RIONAL PUTRA, S.H., M.H.", 1, NOW(), NOW(), NULL),
+(106, "IDA, S.T.", 1, NOW(), NOW(), NULL),
+(107, "WAN DARMAYANA ACHMAYU, S.H., M.H.", 1, NOW(), NOW(), NULL),
+(108, "MANGIHUT RAJAGUKGUK, S.E., M.M.", 1, NOW(), NOW(), NULL),
+(109, "MELINA BR PURBA", 1, NOW(), NOW(), NULL),
+(110, "SUEDI CONG", 1, NOW(), NOW(), NULL),
+(111, "JONI SETIYA PAMBUDI", 1, NOW(), NOW(), NULL),
+(112, "WYIDIA, S.T.", 1, NOW(), NOW(), NULL);
+
+-- Caleg Dapil 2
+INSERT INTO caleg(id, nama, dapil_id, created_at, updated_at, deleted_at) VALUES
+(201, "NURYANTO, S.H., M.H.", 2, NOW(), NOW(), NULL),
+(202, "UDIN P. SIHALOHO, S.H.", 2, NOW(), NOW(), NULL),
+(203, "BERNIKE SULASTRI", 2, NOW(), NOW(), NULL),
+(204, "GABRIEL S. A. A. SIANTURI, B.Com.", 2, NOW(), NOW(), NULL),
+(205, "WELLIANA FRANCISKA HUTAGALUNG", 2, NOW(), NOW(), NULL),
+(206, "EPENDI TAN", 2, NOW(), NOW(), NULL),
+(207, "ASIH SUWITO", 2, NOW(), NOW(), NULL);
+
+-- Caleg Dapil 3
+INSERT INTO caleg(id, nama, dapil_id, created_at, updated_at, deleted_at) VALUES
+(301, "TUMBUR M. SIHALOHO,S.E.", 3, NOW(), NOW(), NULL),
+(302, "MULUKING", 3, NOW(), NOW(), NULL),
+(303, "ADE SULISTIANI", 3, NOW(), NOW(), NULL),
+(304, "SUYATI, S.Pd.", 3, NOW(), NOW(), NULL),
+(305, "EDUARD BERAHMANA", 3, NOW(), NOW(), NULL),
+(306, "EEFRIANI AMARA, SKM., CPs., CHt.", 3, NOW(), NOW(), NULL),
+(307, "JIMMI SIMATUPANG, S.T.", 3, NOW(), NOW(), NULL),
+(308, "JEFREY EDUARD MANIK", 3, NOW(), NOW(), NULL),
+(309, "ROSTANTI SAPAGANTA, S.E.", 3, NOW(), NOW(), NULL);
+
+-- Caleg Dapil 4
+INSERT INTO caleg(id, nama, dapil_id, created_at, updated_at, deleted_at) VALUES
+(401, "ASKARMIN HARUN, S.Sos., M.Si.", 4, NOW(), NOW(), NULL),
+(402, "DANDIS RAJA GUKGUK, S.T.", 4, NOW(), NOW(), NULL),
+(403, "DAORITA", 4, NOW(), NOW(), NULL),
+(404, "MAJA SAOR MANALU, S.T., S.H., M.H.", 4, NOW(), NOW(), NULL),
+(405, "MOHAWI", 4, NOW(), NOW(), NULL),
+(406, "SITI HAPSAH", 4, NOW(), NOW(), NULL),
+(407, "JAMSON SILABAN, S.H.", 4, NOW(), NOW(), NULL),
+(408, "ASPINA HARIANJA", 4, NOW(), NOW(), NULL),
+(409, "IDESOKHI WARUWU", 4, NOW(), NOW(), NULL);
+
+-- Caleg Dapil 5
+INSERT INTO caleg(id, nama, dapil_id, created_at, updated_at, deleted_at) VALUES
+(501, "TOHAP ERIKSON PASARIBU", 5, NOW(), NOW(), NULL),
+(502, "HJ. ENY WIDYAWATI, S.E., M.M.", 5, NOW(), NOW(), NULL),
+(503, "SARBOWO", 5, NOW(), NOW(), NULL),
+(504, "ROSDIANA DEWI SIRINGO RINGO, S.E., M.M.", 5, NOW(), NOW(), NULL),
+(505, "TAPIS DABBAL SIAHAAN", 5, NOW(), NOW(), NULL),
+(506, "BAMBANG YULIANTO, S.H.", 5, NOW(), NOW(), NULL);
+
+-- Caleg Dapil 6
+INSERT INTO caleg(id, nama, dapil_id, created_at, updated_at, deleted_at) VALUES
+(601, "BUDI MARDIYANTO, S.E.", 6, NOW(), NOW(), NULL),
+(602, "PURWANDHANI PRANANINGRUM, S.H.", 6, NOW(), NOW(), NULL),
+(603, "AGUSHARMINSYAH", 6, NOW(), NOW(), NULL),
+(604, "VIVI EVANTI HASIBUAN", 6, NOW(), NOW(), NULL),
+(605, "DRS. BURALIMAR, M.Si.", 6, NOW(), NOW(), NULL),
+(606, "PARLINGGOMAN TAMPUBOLON", 6, NOW(), NOW(), NULL),
+(607, "MAKMUR SUSANTO, S.H.", 6, NOW(), NOW(), NULL);
