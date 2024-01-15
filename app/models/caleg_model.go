@@ -22,7 +22,7 @@ type Caleg struct {
 	DeletedAt gorm.DeletedAt `gorm:"column:deleted_at" json:"deleted_at"`
 }
 
-func (cl *Caleg) GetByDapil(id int) error {
+func (cl *Caleg) GetByID(id int) error {
 	db := config.ConnectGormDB()
 	const query string = `
 	SELECT
@@ -35,7 +35,7 @@ func (cl *Caleg) GetByDapil(id int) error {
 	JOIN
 		dapil dp ON cl.dapil_id = dp.id
 	WHERE 
-		cl.dapil_id = ? AND cl.deleted_at IS NULL;
+		cl.id = ? AND cl.deleted_at IS NULL;
 	`
 
 	results := db.Raw(query, id).Scan(&cl)
