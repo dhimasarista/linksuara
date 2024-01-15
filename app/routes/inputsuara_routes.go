@@ -60,7 +60,7 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 			"status":    fiber.StatusOK,
 		})
 	})
-
+	// Get Data List of Caleg
 	app.Get("/pilih/caleg/:id", func(c *fiber.Ctx) error {
 		var idDapil = c.Params("id")
 		idDapilNumber, _ := strconv.Atoi(idDapil)
@@ -79,23 +79,24 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 	app.Get("/pilih/tps/:id", func(c *fiber.Ctx) error {
 		var idKl = c.Params("id")
 		idKlNumber, _ := strconv.Atoi(idKl)
-
 		daftarTps, err := tps.FindTpsByKelurahan(idKlNumber)
 		if err != nil {
 			return handlers.ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
 		}
-
 		return c.JSON(fiber.Map{
 			"tps":    daftarTps,
 			"status": fiber.StatusOK,
 		})
 	})
-
+	// Get data of caleg
 	app.Get("/input-suara/caleg/:id", func(c *fiber.Ctx) error {
 		var idCaleg = c.Params("id")
-		idCalegNumber, _ := strconv.Atoi(idCaleg)
+		idCalegNumber, err := strconv.Atoi(idCaleg)
+		if err != nil {
+			return handlers.ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
+		}
 
-		err := caleg.GetByID(idCalegNumber)
+		err = caleg.GetByID(idCalegNumber)
 		if err != nil {
 			return handlers.ResponseJSON(c, err.Error(), fiber.StatusInternalServerError)
 		}
@@ -124,4 +125,10 @@ func InputSuaraRoutes(app *fiber.App, store *session.Store) {
 			"status": fiber.StatusOK,
 		})
 	})
+	// app.Get("/input-suara/caleg/tps/:id", func(c *fiber.Ctx) error {
+	// 	var idKelurahan = c.Params("id")
+	// 	idKelurahanNumber, _ := strconv.Atoi(idKelurahan)
+
+	// 	return c.JSON(fiber.Map{})
+	// })
 }

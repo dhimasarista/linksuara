@@ -27,7 +27,7 @@ func (cl *Caleg) GetByID(id int) error {
 	const query string = `
 	SELECT
 		cl.id,
-		cl.nama AS caleg,
+		cl.nama,
 		cl.dapil_id,
 		dp.nama AS nama_dapil
 	FROM

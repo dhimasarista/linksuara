@@ -79,11 +79,6 @@
                             </div>
                         </div>
                         <script>
-                            // document.addEventListener('DOMContentLoaded', function() {
-                            //     const orderGoingTable = $('#tabel-caleg').DataTable({
-                            //         "order": [[0, 'desc']] // Mengurutkan berdasarkan kolom pertama secara menaik
-                            //     });
-                            // });
                         </script>
                     </div>
                 </div>
@@ -106,28 +101,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>TPS 1</td>
-                                <td>
-                                    <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
-                                </td>
-                                <td>
-                                    <button id="submit-inputsuara" class="btn btn-primary" type="button">
-                                        <span id="loading-inputsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Update</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>TPS 2</td>
-                                <td>
-                                    <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
-                                </td>
-                                <td>
-                                    <button id="submit-inputsuara" class="btn btn-primary" type="button">
-                                        <span id="loading-inputsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Update</span>
-                                    </button>
-                                </td>
-                            </tr>
+                            <!-- DataTable is Here -->
                         </tbody>
                     </table>
                 </div>
@@ -481,6 +455,11 @@
                             } else if (pilihJenisInputSuara.selectedIndex === 2) {
                                 const headerInputSuaraCaleg = document.getElementById("header-input-suara-caleg");
                                 headerInputSuaraCaleg.innerText = null;
+                                 // Setup Table TPS
+                                 $('#tabel-inputsuara-pertps').DataTable().destroy();
+                                const calegPerTpsTable = $('#tabel-inputsuara-pertps').DataTable({
+                                    "order": [[0, 'asc']] // Mengurutkan berdasarkan kolom pertama secara menaik
+                                });
                                 const idCaleg = selectInputSuaraCalegPilihCaleg.value;
                                 fetch(`/input-suara/caleg/${idCaleg}`, {
                                     headers: {
@@ -490,18 +469,55 @@
                                 .then(response =>  response.json())
                                 .then(results => {
                                     console.log(results);
+                                    if (results.status !== 200 && results.tps === null) {
+                                        InternalServerError("Data TPS belum tersedia");
+                                        return 0;
+                                    }
                                     headerInputSuaraCaleg.innerText = `${results.caleg["nama"]}`
+                                });
+
+                                fetch(`/pilih/tps/${selectInputSuaraPilihKelurahan.value}`, {
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
                                 })
-                                setTimeout(() => {
+                                .then(response => response.json())
+                                .then(results => {
+                                    console.log(results);
+                                    if (results.tps === null) {
+                                        InternalServerError("Data TPS belum tersedia");
+                                        loadingPilihJenisInputSuara.classList.remove("spinner-border");
+                                        loadingPilihJenisInputSuara.innerText = "Submit";
+                                        return 0;
+                                    }
+                                    // Clear existing data in the DataTable
+                                    calegPerTpsTable.clear();
+                                    // Add new data to the DataTable
+                                    results.tps.forEach(tps => {
+                                        calegPerTpsTable.row.add([
+                                            tps.nama,
+                                            `<input type="number" min="0" value="0" name="jumlahSuara" class="jumlah-suara">`,
+                                            `<button class="btn btn-primary submit-inputsuara">Update</button>`
+                                        ]).draw();
+                                    });
+                                    // Menampilkan Page Input Suara Caleg
                                     loadingPilihJenisInputSuara.classList.remove("spinner-border");
                                     loadingPilihJenisInputSuara.innerText = "Submit";
-    
                                     cardInputSuaraCaleg.removeAttribute("hidden");
                                     cardPilihJenisInputSuara.setAttribute("hidden", true);
-                                    buttonReturnInputSuara.removeAttribute("hidden")
-                                }, 1000);
+                                    buttonReturnInputSuara.removeAttribute("hidden");
+                                })
                             }
                         });
+
+                        buttonReturnInputSuara.addEventListener("click", (e) => {
+                            e.preventDefault();
+
+                            cardInputSuaraCaleg.setAttribute("hidden", true);
+                            cardInputSuaraTps.setAttribute("hidden", true);
+                            cardPilihJenisInputSuara.removeAttribute("hidden");
+                            buttonReturnInputSuara.setAttribute("hidden", true);
+                        })
     
                         // Input Suara Caleg Pilih Caleg Event Handler
                         function pilihInputSuaraCalegPilihCalegEvent() {
@@ -530,10 +546,5 @@
             loadingCard.setAttribute("hidden", true);
             cardPilihJenisInputSuara.removeAttribute("hidden");
         }
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-        const orderGoingTable = $('#tabel-inputsuara-pertps').DataTable({
-            "order": [[0, 'asc']] // Mengurutkan berdasarkan kolom pertama secara menaik
-        });
     });
 </script>
