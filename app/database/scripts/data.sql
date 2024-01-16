@@ -6,11 +6,7 @@ INSERT INTO dapil VALUES(2, "bengkong - batu ampar", NOW(), NOW(), NULL);
 INSERT INTO dapil VALUES(3, "nongsa - sei beduk - bulang - galang", NOW(), NOW(), NULL);
 INSERT INTO dapil VALUES(4, "sagulung", NOW(), NOW(), NULL);
 INSERT INTO dapil VALUES(5, "batu aji", NOW(), NOW(), NULL);
-INSERT INTO dapil VALUES(6, "sekupang - belakang padang", NOW(), NOW(), NULL);
-
-
-INSERT INTO caleg (id, nama, dapil_id, created_at, updated_at, deleted_at) VALUES
-(11, "putra yustisty respaty", 1, NOW(), NOW(), NULL),
+INSERT INTO dapil VALUES(6, "sekupang - belakang padang", NOW(), NOW(), NULL); 
 
 -- Perintah INSERT untuk tabel kecamatan
 INSERT INTO kecamatan VALUES(11, "batam kota", 1, NOW(), NOW(), NULL);
@@ -59,7 +55,7 @@ INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
 (224, "Tanjung Sengkuang", NOW(), NOW(), 22);
 
 -- Kelurahan untuk Kecamatan Nongsa (Kode Kecamatan: 31)
-INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
+INSERT INTO kelurahan (id, nama, created_at, update  d_at, kecamatan_id) VALUES
 (311, "Batu Besar", NOW(), NOW(), 31),
 (312, "Kabil", NOW(), NOW(), 31),
 (313, "Ngenang", NOW(), NOW(), 31),

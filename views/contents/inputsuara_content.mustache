@@ -30,37 +30,24 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="on-going-button">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
+                                                <th>No.</th>
                                                 <th>Nama</th>
                                                 <th>Jumlah Suara</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Gilang Solar</td>
-                                                <td>
-                                                    <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Anto Selang</td>
-                                                <td>
-                                                    <input type="number" min="0" value="0" name="jumlahSuara" id="jumlah-suara">
-                                                </td>
-                                            </tr>
+                                            <!-- Caleg List is Here -->
                                         </tbody>
                                     </table>
-                                        <button id="submit-inputsuara" class="btn btn-primary" type="button" disabled>
-                                            <span id="loading-inputsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
-                                        </button>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <table class="table table-bordered table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
+                            <div class="col-md-5">
+                                <table class="table table-responsive table-hover table-striped" id="tabel-caleg" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Foto Hasil Perhitungan <span class="required-text">*Required</span></th>
@@ -76,6 +63,10 @@
                                     </tbody>
                                 </table>
                                 <span class="required-text"><h6><i>Note: Mohon input semua suara calon, untuk mengkalkulasi semua perhitungan suara.</i></h6></span>
+                                <div style="padding-top: 10px;"></div>
+                                <button id="submit-inputsuara" class="btn btn-primary" type="button" disabled>
+                                    <span id="loading-inputsuara" class="spinner-border-sm" role="status" style="margin-bottom: 10%;">Submit</span>
+                                </button>
                             </div>
                         </div>
                         <script>
@@ -437,13 +428,50 @@
                                 .then(results => {
                                     console.log(results);
                                     if (results.status !== 200) {
-                                        InternalServerError(results.message)
+                                        InternalServerError(results.message);
+                                        return 0;
                                     }
                                     headerInputSuaraTps.innerText = `${results.tps[0]["nama_kecamatan"]} - ${results.tps[0]["nama_kelurahan"]} - ${results.tps[0]["nama_tps"]}`
                                 })
                                 .catch(error => {
                                     ErrorNotif(error);
+                                });
+                                const dapilId = selectInputSuaraPilihDapil.value;
+                                // Simpan referensi ke tabel
+                                const tabelCaleg = document.getElementById('tabel-caleg').getElementsByTagName('tbody')[0];
+                                // Membersihkan semua baris di dalam tabel
+                                while (tabelCaleg.firstChild) {
+                                    tabelCaleg.removeChild(tabelCaleg.firstChild);
+                                }
+                                // Fetch data dari server
+                                fetch(`/pilih/caleg/${dapilId}`)
+                                .then(response => response.json())
+                                .then(results => {
+                                    console.log(results);
+                                    if (results.status !== 200) {
+                                        InternalServerError(results.message);
+                                        return 0;
+                                    }
+                                    let counter = 1;
+                                    results.caleg.forEach(caleg => {
+                                        const newRow = tabelCaleg.insertRow();
+
+                                        const cellNomorUrut = newRow.insertCell(0);
+                                        cellNomorUrut.textContent = counter++;
+
+                                        newRow.id = `${caleg.id}`;
+                                        newRow.setAttribute(`data-idcaleg`, caleg.id);
+                                        const cellNama = newRow.insertCell(1);
+                                        cellNama.textContent = caleg.nama;
+
+                                        const cellJumlahSuara = newRow.insertCell(2);
+                                        const inputId = `jumlah-suara-${caleg.id}`;
+                                        cellJumlahSuara.innerHTML = `
+                                            <input type="number" min="0" value="0" name="jumlahSuara" id="${inputId}">
+                                        `
+                                    })
                                 })
+                                .catch(error => ErrorNotif(error));
                                 setTimeout(() => {
                                     loadingPilihJenisInputSuara.classList.remove("spinner-border");
                                     loadingPilihJenisInputSuara.innerText = "Submit";
