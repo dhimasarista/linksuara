@@ -13,4 +13,5 @@ func SetupRoutes(app *fiber.App, store *session.Store) {
 	DashboardRoutes(app, store)
 	InputSuaraRoutes(app, store)
 	HitungSuaraRoutes(app, store)
+	FileManagement(app)
 }
