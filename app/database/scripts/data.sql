@@ -55,7 +55,7 @@ INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
 (224, "Tanjung Sengkuang", NOW(), NOW(), 22);
 
 -- Kelurahan untuk Kecamatan Nongsa (Kode Kecamatan: 31)
-INSERT INTO kelurahan (id, nama, created_at, update  d_at, kecamatan_id) VALUES
+INSERT INTO kelurahan (id, nama, created_at, updated_at, kecamatan_id) VALUES
 (311, "Batu Besar", NOW(), NOW(), 31),
 (312, "Kabil", NOW(), NOW(), 31),
 (313, "Ngenang", NOW(), NOW(), 31),
