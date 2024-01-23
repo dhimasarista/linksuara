@@ -1,5 +1,5 @@
 CREATE TABLE users (
-  id INT PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(255),
   password VARCHAR(255),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -8,7 +8,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE dapil (
-  id INT PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   nama VARCHAR(255),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -16,7 +16,7 @@ CREATE TABLE dapil (
 );
 
 CREATE TABLE kecamatan (
-  id INT PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   nama VARCHAR(255),
   dapil_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -26,7 +26,7 @@ CREATE TABLE kecamatan (
 );
 
 CREATE TABLE kelurahan (
-  id INT PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   nama VARCHAR(255),
   kecamatan_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -36,7 +36,7 @@ CREATE TABLE kelurahan (
 );
 
 CREATE TABLE tps (
-  id INT PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   nama VARCHAR(255),
   kelurahan_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -46,7 +46,7 @@ CREATE TABLE tps (
 );
 
 CREATE TABLE caleg (
-  id INT PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   nama VARCHAR(255),
   dapil_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -56,7 +56,7 @@ CREATE TABLE caleg (
 );
 
 CREATE TABLE jumlah_suara (
-  id INT PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   jumlah INT,
   dapil_id INT,
   kecamatan_id INT,
@@ -74,8 +74,8 @@ CREATE TABLE jumlah_suara (
 );
 
 CREATE TABLE bukti_suara (
-  id INT PRIMARY KEY,
-  foto BLOB,
+  id INT AUTO_INCREMENT PRIMARY KEY ,
+  foto LONGBLOB,
   keterangan VARCHAR(255),
   jumlah_suara_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
